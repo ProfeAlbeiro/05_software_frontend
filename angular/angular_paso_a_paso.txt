@@ -1,0 +1,2380 @@
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||----------------------------------------------------------------------- ANGULAR PASO A PASO ------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||                                                                                                                                                                    |||
+||| --  01. ENTORNO DE DESARROLLO                                                                                                                                      |||
+||| --  02. ESTRUCTURA DEL PROYECTO                                                                                                                                    |||
+||| --  03. COMPONENTES                                                                                                                                                |||
+||| --  04. INTERFACES                                                                                                                                                 |||
+||| --  05. SERVICIOS                                                                                                                                                  |||
+||| --  06. ENRUTAMIENTO                                                                                                                                               |||
+||| --  07. FORMULARIOS REACTIVOS                                                                                                                                      |||
+||| --  08. HTTP FETCH Y JSON SERVER                                                                                                                                   |||
+||| --  09. DESPLIEGUE (EN CONSTRUCCIÓN)                                                                                                                               |||
+|||                                                                                                                                                                    |||
+||| --  ANEXOS: TENER EN CUENTA                                                                                                                                        |||
+||| --          AX_01.  Subir el Proyecto a Github                                                                                                                     |||
+||| --          AX_02.  Clonar un proyecto de Github                                                                                                                   |||
+||| --          AX_03.  Puesta en Marcha del Proyecto                                                                                                                  |||
+|||                                                                                                                                                                    |||
+||| --  Bibliografía  https://angular.dev/tutorials                                                                                                                    |||
+|||                   https://www.youtube.com/playlist?list=PLrAw40DbN0l2XNbdFx0GvoRdzsyqTsdmP                                                                         |||
+|||                                                                                                                                                                    |||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||                                                                                                                                                                    |||
+||| --  01. ENTORNO DE DESARROLLO                                                                                                                                      |||
+||| --      01.01.  Instalar Visual Studio Code                                                                                                                        |||
+||| --      01.02.  Instalar Node Js                                                                                                                                   |||
+||| --      01.03.  Modificar Directivas en PowerShell                                                                                                                 |||
+||| --  02. ESTRUCTURA DEL PROYECTO                                                                                                                                    |||
+||| --      02.01.  Crear el Proyecto                                                                                                                                  |||
+||| --      02.02.  Ejecutar el servidor                                                                                                                               |||
+||| --      02.03.  Modificar el componente 'frontend/src/app/app.ts'                                                                                                  |||
+||| --  03. COMPONENTES                                                                                                                                                |||
+||| --      03.01.  Crear la carpeta 'assets' en la carpeta 'frontend/public'                                                                                          |||
+||| --      03.02.  Modificar los estilos globales del proyecto 'frontend/src/styles.css'                                                                              |||
+||| --      03.03.  Modificar la estructura y contenido del componente principal en 'frontend/src/app/app.html'                                                        |||
+||| --      03.04.  Crear el Componente 'home'                                                                                                                         |||
+||| --      03.05.  Modificar los estilos del componente 'home' en 'frontend/src/app/components/home/home.css'                                                         |||
+||| --      03.06.  Modificar la Clase del componente principal en 'frontend/src/app/app.ts'                                                                           |||
+||| --      03.07.  Modificar la estructura y contenido del componente principal en 'frontend/src/app/app.html'                                                        |||
+||| --      03.08.  Modificar la estructura y contenido del componenten 'home' en 'frontend/src/app/components/home/home.html'                                         |||
+||| --      03.09.  Crear el Componente 'housingLocation'                                                                                                              |||
+||| --      03.10.  Modificar los estilos del componente 'housingLocation' en 'frontend/src/app/components/housing-location/housing-location.css'                      |||
+||| --      03.11.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --      03.12.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html'                                          |||
+||| --  04. INTERFACES                                                                                                                                                 |||
+||| --      04.01.  Crear la interface 'HousingLocationInterface'                                                                                                      |||
+||| --      04.02.  Codificar el archivo 'frontend/src/app/components/housing-location-interface.ts'                                                                   |||
+||| --      04.03.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --      04.04.  Modificar la Clase del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.ts'                         |||
+||| --      04.05.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html'                                          |||
+||| --      04.06.  Modificar estructura y contenido del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.html'         |||
+||| --      04.07.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --      04.08.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html'                                          |||
+||| --  05. SERVICIOS                                                                                                                                                  |||
+||| --      05.01.  Crear el servicio 'housing-service'                                                                                                                |||
+||| --      05.02.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts'                                                        |||
+||| --      05.03.  Cortar código de la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                      |||
+||| --      05.04.  Pegar el código del paso anterior en la Clase del componente 'housing-service' en 'frontend/src/app/components/housing-service.ts'                 |||
+||| --      05.05.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --      05.06.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts'                                                        |||
+||| --      05.07.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --  06. ENRUTAMIENTO                                                                                                                                               |||
+||| --      06.01.  Crear el componente 'details'                                                                                                                      |||
+||| --      06.02.  Modificar los estilos del componente 'home' en 'frontend/src/app/components/details/details.css'                                                   |||
+||| --      06.03.  Incorporar 'zona'                                                                                                                                  |||
+||| --      06.04.  Modificar el punto de entrada de la aplicación en el navegador 'frontend/src/main.ts'                                                              |||
+||| --      06.05.  Modificar la Clase del componente principal en 'frontend/src/app/app.ts'                                                                           |||
+||| --      06.06.  Modificar la estructura y contenido del componente principal en 'frontend/src/app/app.html'                                                        |||
+||| --      06.07.  Modificar el enrutador 'app.routes' en 'frontend/src/app/app.routes.ts'                                                                            |||
+||| --      06.08.  Modificar la Clase del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.ts'                         |||
+||| --      06.09.  Modificar estructura y contenido del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.html'         |||
+||| --      06.10.  Modificar la Clase del componente 'details' en 'frontend/src/app/components/details/details.ts'                                                    |||
+||| --      06.11.  Modificar la estructura y contenido del componente 'details' en 'frontend/src/app/components/details/details.html'                                 |||
+||| --  07. FORMULARIOS REACTIVOS                                                                                                                                      |||
+||| --      07.01.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts'                                                        |||
+||| --      07.02.  Modificar la Clase del componente 'details' en 'frontend/src/app/components/details/details.ts'                                                    |||
+||| --      07.03.  Modificar la estructura y contenido del componente 'details' en 'frontend/src/app/components/details/details.html'                                 |||
+||| --      07.04.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --      07.05.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html'                                          |||
+||| --  08. HTTP FETCH Y JSON SERVER                                                                                                                                   |||
+||| --      08.01.  Crear el Servidor Json Server                                                                                                                      |||
+||| --      08.02.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts'                                                        |||
+||| --      08.03.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts'                                                             |||
+||| --      08.04.  Modificar la Clase del componente 'details' en 'frontend/src/app/components/details/details.ts'                                                    |||
+||| --  09. DESPLIEGUE (EN CONSTRUCCIÓN)                                                                                                                               |||
+||| --      09.01.  Configurar el proyecto Angular para GitHub Pages En 'angular.json' (Línea 16)                                                                      |||
+||| --      09.02.  Instalar el paquete angular-cli-ghpages para facilitar el despliegue                                                                               |||
+||| --      09.03.  Construir el proyecto para producción, en carpeta 'dist/frontend/browser/'                                                                         |||
+||| --      09.04.  Subir el proyecto a GitHub Pages                                                                                                                   |||
+||| --      09.05.  Comprobar la configuración del repositorio en GitHub                                                                                               |||
+|||                                                                                                                                                                    |||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------------------- 01. ENTORNO DE DESARROLLO ---------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.01.  Instalar Visual Studio Code: --------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'Visual Studio Code': https://code.visualstudio.com/download.
+
+            02. Instalar Visual Studio Code.
+
+                    ⦿   En el asistente de instalación dejar marcado:   ☑ 'Agregar PATH…'.                    
+
+            03. Abrir Visual Studio Code.
+            
+            04. Instalar las siguientes extensiones en Visual Studio Code:
+                    
+                    ⦿   Auto Close Tag
+                    ⦿   Auto Complete Tag
+                    ⦿   Auto Rename Tag
+                    ⦿   Code Runner
+                    ⦿   HTML CSS Support
+                    ⦿   IntelliSense for CSS class names in HTML
+                    ⦿   JavaScript (ES6) code snippets
+                    ⦿   Live Server
+                    ⦿   Material Icon Theme
+                    ⦿   Path IntelliSense
+                    ⦿   Prettier - Code formatter
+
+                    ⦿   Angular Essentials (Version 18)
+                    ⦿   Angular Language Service
+                    ⦿   Angular Snippets (Version 18)
+                    ⦿   TypeScript Importer
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.02.  Instalar Node Js: -------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'node.js': https://nodejs.org/es/.
+
+            02. Instalar node.js.
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.03.  Modificar Directivas en PowerShell: -------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir el PowerShell de Windows
+            
+            02. Ejecutar el siguiente comando
+
+                    ⦿   PS C:\..\..> Get-ExecutionPolicy
+                    ⦿   Restricted
+
+            03. Si aparece 'Restricted', hay que cambiarla a 'Unrestricted' de la siguiente forma:
+
+                    ⦿   PS C:\..\..> Set-ExecutionPolicy -Scope CurrentUser
+
+                          cmdlet Set-ExecutionPolicy en la posición 1 de la canalización de comandos
+                          Proporcione valores para los parámetros siguientes:
+                          ExecutionPolicy: Unrestricted
+
+            04. Verificar la versión de 'node' y 'npm':
+
+                    ⦿   PS C:\..\..> node --version
+                    ⦿   PS C:\..\..> npm --version
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------- 02. ESTRUCTURA DEL PROYECTO --------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+                                                                                                                                                      # C = Carpetas
+                                                                                                                                                      # A = Archivos
+
+                frontend/                                                 # C. Raíz del Proyecto.
+                ├── .vscode                                               # C. Configuraciones específicas de Visual Studio Code (atajos, depuración, formato).
+                ├── node_modules                                          # C. Contiene todas las dependencias instaladas con npm (no se edita manualmente).
+                ├── public                                                # C. Recursos estáticos (imágenes, íconos, manifest.json, etc.).
+                ├── src                                                   # C. Carpeta principal del código fuente de Angular.
+                │   ├── app/                                              # C. Carpeta de la aplicación principal (componentes, servicios, módulos).
+                │   │   ├── app.config.server.ts                          # A. Configuración para el renderizado del lado del servidor (SSR:Angular Universal).
+                │   │   │   └── components/                               # C. Componentes de la aplicaciòn
+                │   │   │       ├── details/                              # C. Componente detalles
+                │   │   │       │   ├── details.css                       # A. Estilos del componente detalles
+                │   │   │       │   ├── details.html                      # A. Estructura y contenido del componente detalles
+                │   │   │       │   ├── details.spec.ts                   # A. Pruebas para el componente detalles
+                │   │   │       │   └── details.ts                        # A. Clase del componente detalles
+                │   │   │       ├── home/                                 # C. Componente home
+                │   │   │       │   ├── home.css                          # A. Estilos del componente home
+                │   │   │       │   ├── home.html                         # A. Estructura y contenido del componente home
+                │   │   │       │   ├── home.spec.ts                      # A. Pruebas para el componente home
+                │   │   │       │   └── home.ts                           # A. Clase del componente home
+                │   │   │       ├── housing-location/                     # C. Componente housing-location
+                │   │   │       │   ├── housing-location.css              # A. Estilos del componente housing-location
+                │   │   │       │   ├── housing-location.html             # A. Estructura y contenido del componente housing-location
+                │   │   │       │   ├── housing-location.spec.ts          # A. Pruebas para el componente housing-location
+                │   │   │       │   └── housing-location.ts               # A. Clase del componente housing-location
+                │   │   │       ├── housing-location-interface.ts         # A. Interface (Modelo) de los componentes 'home', 'housing-location' y 'details'
+                │   │   │       └── housing-service.ts                    # A. Servicio (métodos de consumo de la API) para los componentes anteriores
+                │   │   ├── app.config.ts                                 # A. Configuración general de la aplicación (módulos, dependencias, providers).
+                │   │   ├── app.css                                       # A. Estilos globales específicos del componente raíz.
+                │   │   ├── app.html                                      # A. Plantilla principal 'html' del componente raíz (App).
+                │   │   ├── app.routes.server.ts                          # A. Rutas usadas en el lado del servidor (Angular Universal).
+                │   │   ├── app.routes.ts                                 # A. Definición de rutas de la aplicación en el navegador.
+                │   │   ├── app.spec.ts                                   # A. Archivo de pruebas unitarias para App.
+                │   │   └── app.ts                                        # A. Clase principal del componente raíz (App).
+                │   ├── index.html                                        # A. Página HTML que carga Angular. Aquí se inserta la app (<app-root></app-root>).
+                │   ├── main.server.ts                                    # A. Punto de entrada de Angular Universal para renderizado en servidor.
+                │   ├── main.ts                                           # A. Punto de entrada de la app en el navegador. Inicializa Angular y arranca AppModule.
+                │   ├── styles.css                                        # A. Estilos globales de toda la aplicación.
+                │   └── server.ts                                         # A. Archivo para configurar el servidor (Node.js + Express).   
+                ├── .editorconfig                                         # A. Reglas de estilo para editores de código (indentación, fin de línea, etc.).
+                ├── .gitignore                                            # A. Indica qué archivos/carpetas ignorar en Git (ej: node_modules).
+                ├── angular.json                                          # A. Configuración principal Angular (build, serve, rutas de assets, estilos globales).
+                ├── package-lock.json                                     # A. Versión exacta de las dependencias instaladas (bloquea versiones).
+                ├── package.json                                          # A. Lista de dependencias, scripts (ng serve, ng build, etc.) y metadatos del proyecto.
+                ├── README.md                                             # A. Documentación inicial del proyecto.
+                ├── tsconfig.app.json                                     # A. Configuración de TypeScript específica para la aplicación (src/app).
+                ├── tsconfig.json                                         # A. Configuración base de TypeScript para todo el proyecto.
+                └── tsconfig.spec.json                                    # A. Configuración de TypeScript para pruebas unitarias (Karma/Jasmine).
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.01.  Crear el Proyecto: ------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear la carpeta 'angular' en Windows (Por ejemplo, en el Escritorio):
+
+                    ⦿   C:\..\..\angular>
+
+            02. Abrir con 'Visual Studio Code' la carpeta creada, es decir,'angular'.
+
+            03. Abrir una terminal en Visual Studio Code ('Terminal / New Terminal' ó 'Ctrl + Shift + ñ')
+            
+            04. Instalar Angular escribiendo desde la terminal:
+            
+                    ⦿   PS C:\..\..\angular> npm install -g @angular/cli@20.0.1
+             
+            05. Verificar las versiones de node.js y angular desde la terminal:
+
+                    ⦿   PS C:\..\..\angular> ng version
+
+            06. Crear un proyecto de angular desde la terminal:
+
+                    ⦿   PS C:\..\..\angular> ng new frontend
+
+                          ? Do you want to create a 'zoneless' application without zone.js (Developer Preview)? (y/N) y                          
+                          ❯ CSS             [ https://developer.mozilla.org/docs/Web/CSS                     ]
+                          ? Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (y/N) y
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  NOTA:   
+                    
+                    ⦿   Para cambiar el nombre de la terminal, seleccionela en la parte inferior derecha y presionando F2 / Rename...
+                    ⦿   Nómbrela: 'frontend'
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+            
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.02.  Ejecutar el servidor: ---------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Ingresar a la carpeta 'frontend' desde la terminal:
+
+                    ⦿   PS C:\..\..\angular> cd frontend
+
+            02. Ejecutar el Servidor desde la terminal:
+
+                    ⦿   PS C:\..\..\angular\frontend> ng serve -o
+
+                          Would you like to share pseudonymous usage data about this project with the Angular Team
+                          at Google under Google's Privacy Policy at https://policies.google.com/privacy. For more
+                          details and how to change this setting, see https://angular.dev/cli/analytics.
+
+                              (y/N) y
+
+                          Watch mode enabled. Watching for file changes...
+                          NOTE: Raw file sizes do not reflect development server per-request transformations.
+                          ➜  Local:   http://localhost:4200/
+                          ➜  press h + enter to show help
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  NOTA:   
+                    
+                    ⦿   Con 'CTRL + C', se detiene la ejecución del servidor en La Terminal
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+                
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.03.  Modificar el componente 'frontend/src/app/app.ts': ----------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component } from '@angular/core';
+                    02   import { RouterOutlet } from '@angular/router';
+                    03
+                    04   @Component({
+                    05     selector: 'app-root',
+                    06     imports: [RouterOutlet],
+                    07     templateUrl: './app.html',
+                    08     styleUrl: './app.css'
+                    09   })
+                    10   export class App {
+                    11     protected title:number = 35;
+                    12   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El código de este archivo, representa el componente principal que llama a los archivos 'html' y 'css' y demás elementos de
+                         configuración.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+
+                    A.   En la línea 11, se modifica el código a 'protected title:number = 35;', para cambiar el título de bienvenida de la página 
+                         inicial al número 35.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------------- 03. COMPONENTES --------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.01.  Crear la carpeta 'assets' en la carpeta 'frontend/public': --------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar las siguientes imágenes en la carpeta 'frontend/public/assets':
+
+                    https://github.com/ProfeAlbeiro/angular/blob/main/sources/assets/logo.svg
+                    https://github.com/ProfeAlbeiro/angular/blob/main/sources/assets/location-pin.svg
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.02.  Modificar los estilos globales del proyecto 'frontend/src/styles.css': --------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   * {
+                    02     margin: 10;
+                    03     padding: 10;
+                    04   }
+                    05
+                    06 
+                    07   body {
+                    08     font-family: 'Be Vietnam Pro', sans-serif;
+                    09   }
+                    10   :root {
+                    11     --primary-color: #605DC8;
+                    12     --secondary-color: #8B89E6;
+                    13     --accent-color: #e8e7fa;
+                    14     --shadow-color: #E8E8E8;
+                    15   }
+                    16 
+                    17   button.primary {
+                    18     padding: 10px;
+                    19     border: solid 1px var(--primary-color);
+                    20     background: var(--primary-color);
+                    21     color: white;
+                    22     border-radius: 8px;
+                    23   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    B.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.03.  Modificar la estructura y contenido del componente principal en 'frontend/src/app/app.html': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   <main class="main">
+                    02     <header class="brand-home">
+                    03       <img class="brand-logo" src="assets/logo.svg" alt="logo" />
+                    04     </header>
+                    05     <section class="content">
+                    06     </section>
+                    07   </main>
+                    08   <router-outlet />
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El archivo 'app.html', es la plantilla principal del componente raíz (App). Se modifica totalmente el código que viene por
+                         defecto.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    B.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.04.  Crear el Componente 'home': ---------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir otra terminal en Visual Studio Code ('Terminal / New Terminal' ó 'Ctrl + Shift + ñ')
+            
+            02. Cambiar el nombre de la terminal a 'commands', seleccionándola en la parte inferior derecha y presionando F2 / Rename...
+
+            03. Ingresar a la carpeta 'frontend' desde la terminal:
+
+                    ⦿   PS C:\..\..\angular> cd frontend
+
+            04. Crear el componente 'home' desde la terminal:
+
+                    ⦿   PS C:\..\..\angular\frontend> ng generate component components/home
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.05.  Modificar los estilos del componente 'home' en 'frontend/src/app/components/home/home.css': -----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   .results {
+                    02     display: grid;
+                    03     column-gap: 14px;
+                    04     row-gap: 14px;
+                    05     grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+                    06     margin-top: 50px;
+                    07     justify-content: space-around;
+                    08   }
+                    09   input[type="text"] {
+                    10     border: solid 1px var(--primary-color);
+                    11     padding: 10px;
+                    12     border-radius: 8px;
+                    13     margin-right: 4px;
+                    14     display: inline-block;
+                    15     width: 30%;
+                    16   }
+                    17   button {
+                    18     padding: 10px;
+                    19     border: solid 1px var(--primary-color);
+                    20     background: var(--primary-color);
+                    21     color: white;
+                    22     border-radius: 8px;
+                    23   }
+                    24   @media (min-width: 500px) and (max-width: 768px) {
+                    25     .results {
+                    26         grid-template-columns: repeat(2, 1fr);
+                    27     }
+                    28     input[type="text"] {
+                    29         width: 70%;
+                    30     }
+                    31   }
+                    32   @media (max-width: 499px) {
+                    33     .results {
+                    34         grid-template-columns: 1fr;
+                    35     }
+                    36   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    B.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.06.  Modificar la Clase del componente principal en 'frontend/src/app/app.ts': -----------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   import { Component } from '@angular/core';
+                    02   import { RouterOutlet } from '@angular/router';
+                    03   import { Home } from './components/home/home';
+                    04
+                    05   @Component({
+                    06     selector: 'app-root',
+                    07     imports: [RouterOutlet, Home],
+                    08     templateUrl: './app.html',
+                    09     styleUrl: './app.css'
+                    10   })
+                    11   export class App {
+                    12     protected title:number = 35;
+                    13   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El componente 'app.ts' incluye al componente 'home.ts'.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 06, se modifica el código 'imports: [RouterOutlet, Home]' para asociar el componente 'Home' con
+                        'app/components/home.ts' en la línea 09 a 11 con la clase 'export class Home {}'.
+                    
+                    B.  Si al intentar incluir el componente 'Home', no aparece en la línea 03, import { Home } from './components/home/home'; 
+                        ubiquese al final de la palabra 'Home' de la línea 06, presione 'Ctrl + Space' y seleccione el mismo nombre.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.07.  Modificar la estructura y contenido del componente principal en 'frontend/src/app/app.html': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   <main class="main">
+                    02     <header class="brand-home">
+                    03       <img class="brand-logo" src="assets/logo.svg" alt="logo" />
+                    04     </header>
+                    05     <section class="content">
+                    06       <app-home></app-home>
+                    07     </section>
+                    08   </main>
+                    09   <router-outlet />
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El html 'app.html' llama al componente 'app-home'.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 06, se llama al selector 'app-home' del componente 'app/components/home.ts' en la línea 04 'selector: 'app-home''
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.08.  Modificar la estructura y contenido del componenten 'home' en 'frontend/src/app/components/home/home.html': -------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section>
+                    02     <form>
+                    03       <input type="text" placeholder="Filter by city" />
+                    04       <button type="button" class="primary">Search</button>
+                    05     </form>
+                    06     <section class="results">
+                    07     </section>
+                    08   <section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El componente 'home.html' incluye un control de filtro de datos y un botón.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  Se incluye todo el código desde la línea 01 a la 09 para la aplicación del componente 'home.html'
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.09.  Crear el Componente 'housingLocation': ----------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear el componente 'housingLocation' desde la terminal:
+
+                    ⦿   PS C:\..\..\angular\frontend> ng g c components/housingLocation
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.10.  Modificar los estilos del componente 'housingLocation' en 'frontend/src/app/components/housing-location/housing-location.css': ------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   .listing {
+                    02     background: var(--accent-color);
+                    03     border-radius: 30px;
+                    04     padding-bottom: 30px;
+                    05   }
+                    06   .listing-heading {
+                    07     color: var(--primary-color);
+                    08     padding: 10px 20px 0 20px;
+                    09   }
+                    10   .listing-photo {
+                    11     height: 250px;
+                    12     width: 100%;
+                    13     object-fit: cover;
+                    14     border-radius: 30px 30px 0 0;
+                    15   }
+                    16   .listing-location {
+                    17     padding: 10px 20px 20px 20px;
+                    18   }
+                    19   .listing-location::before {
+                    20     content: url("/assets/location-pin.svg") / "";
+                    21   }
+                    22   section.listing a {
+                    23     padding-left: 20px;
+                    24     text-decoration: none;
+                    25     color: var(--primary-color);
+                    26   }
+                    27   section.listing a::after {
+                    28     content: "\203A";
+                    29     margin-left: 5px;
+                    30   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    B.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.11.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   import { Component } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03
+                    04   @Component({
+                    05     selector: 'app-home',
+                    06     imports: [HousingLocation],
+                    07     templateUrl: './home.html',
+                    08     styleUrl: './home.css'
+                    09   })
+                    10   export class Home {
+                    11   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El componente 'home.ts' incluye al componente 'HousingLocation.ts'.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 05, se incluye el código 'imports: [HousingLocation]' para asociar el componente 'HousingLocation' con
+                        'app/components/home.ts' en la línea 09 a 11 con la clase 'export class HousingLocation {}'.
+                    
+                    B.  Si al incluir 'HousingLocation' en la línea 05, no aparece en la línea 02, el siguiente código: 
+                        import { HousingLocation } from '../housing-location/housing-location'; ubiquese al final de la palabra 'HousingLocation' de 
+                        la línea 05, presione 'Ctrl + Space' y seleccione el mismo nombre.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.12.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html': --------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section>
+                    02     <form>
+                    03       <input type="text" placeholder="Filter by city" />
+                    04       <button type="button" class="primary">Search</button>
+                    05     </form>
+                    06     <section class="results">
+                    07       <app-housing-location></app-housing-location>
+                    08     </section>
+                    09   <section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   El componente 'home.ts' incluye al componente 'housingLocation.ts'.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 07, se llama al selector 'app-housing-location' del componente 'app/components/housing-location.ts' en la línea 
+                        04  selector: 'app-housing-location',
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------------------------- 04. INTERFACES --------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.01.  Crear la interface 'HousingLocationInterface': --------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear una interface desde la terminal:
+
+                    ⦿   PS C:\..\..\angular\frontend> ng generate interface components/housingLocationInterface
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.02.  Codificar el archivo 'frontend/src/app/components/housing-location-interface.ts': ---------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   export interface HousingLocationInterface {
+                    02     id: number;
+                    03     name: string;
+                    04     city: string;
+                    05     state: string;
+                    06     photo: string;
+                    07     availableUnits: number;
+                    08     wifi: boolean;
+                    09     laundry: boolean;
+                    10   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   La interfaces son los modelos del proyecto.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  Se incluye todo el código desde la línea 01 a la 10 de la interface 'housing-location-interface.ts'
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.03.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04
+                    05   @Component({
+                    06     selector: 'app-home',
+                    07     imports: [HousingLocation],
+                    08     templateUrl: './home.html',
+                    09     styleUrl: './home.css'
+                    10   })
+                    11   export class Home {
+                    12  
+                    13     readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+                    14
+                    15     housingLocation: HousingLocationInterface = {
+                    16       id: 999,
+                    17       name: 'Test Home',
+                    18       city: 'Test City',
+                    19       state: 'ST',
+                    20       photo: `${this.baseUrl}/example-house.jpg`,
+                    21       availableUnits: 99,
+                    22       wifi: true,
+                    23       laundry: false
+                    24     };
+                    25
+                    26   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 03, se importa la Interface 'HousingLocationInterface'.
+
+                    B.  En la línea 11, consume una API externa de imágenes.
+
+                    C.  En la línea 13, se crea una instancia de 'HousingLocationInterface'.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.04.  Modificar la Clase del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.ts': ---------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component, Input } from '@angular/core';
+                    02   import { HousingLocationInterface } from '../housing-location-interface';
+                    03
+                    04   @Component({
+                    05     selector: 'app-housing-location',
+                    06     imports: [],
+                    07     templateUrl: './housing-location.html',
+                    08     styleUrl: './housing-location.css'
+                    09   })
+                    10   export class HousingLocation {
+                    11     @Input() housingLocation!: HousingLocationInterface;
+                    12   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 01, se importa el decorador @Input.
+
+                    B.  En la línea 02, se importa la Interface 'HousingLocationInterface'.
+
+                    C.  En la línea 10, se crea una instancia de 'HousingLocationInterface' y se usa el decorador @Input() para heredar los datos del
+                        componente padre.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.05.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html': --------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section>
+                    02     <form>
+                    03       <input type="text" placeholder="Filter by city" />
+                    04       <button type="button" class="primary">Search</button>
+                    05     </form>
+                    06     <section class="results">
+                    07       <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
+                    08     </section>
+                    09   <section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   La interfaces son los modelos del proyecto.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  Se incluye todo el código desde la línea 01 a la 10 de la interface 'housing-location.ts'
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.06.  Modificar estructura y contenido del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.html': -----------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section class="listing">
+                    02     <img
+                    03       class="listing-photo"
+                    04       [src]="housingLocation.photo"
+                    05       alt="Exterior photo of {{ housingLocation.name }}"
+                    06       crossorigin
+                    07     />
+                    08     <h2 class="listing-heading">{{ housingLocation.name }}</h2>
+                    09     <p class="listing-location">{{ housingLocation.city }}, {{ housingLocation.state }}</p>
+                    10   </section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.07.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04   import { CommonModule } from '@angular/common';
+                    05
+                    06   @Component({
+                    07     selector: 'app-home',
+                    08     imports: [CommonModule, HousingLocation],
+                    09     templateUrl: './home.html',
+                    10     styleUrl: './home.css'
+                    11   })
+                    12   export class Home {
+                    13
+                    14     readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+                    15
+                    16     housingLocationList: HousingLocationInterface[] = [
+                    17       {
+                    18         id: 0,
+                    19         name: 'Acme Fresh Start Housing',
+                    20         city: 'Chicago',
+                    21         state: 'IL',
+                    22         photo: `${this.baseUrl}/bernard-hermant-CLKGGwIBTaY-unsplash.jpg`,
+                    23         availableUnits: 4,
+                    24         wifi: true,
+                    25         laundry: true,
+                    26       },
+                    27       {
+                    28         id: 1,
+                    29         name: 'A113 Transitional Housing',
+                    30         city: 'Santa Monica',
+                    31         state: 'CA',
+                    32         photo: `${this.baseUrl}/brandon-griggs-wR11KBaB86U-unsplash.jpg`,
+                    33         availableUnits: 0,
+                    34         wifi: false,
+                    35         laundry: true,
+                    36       },
+                    37       {
+                    38         id: 2,
+                    39         name: 'Warm Beds Housing Support',
+                    40         city: 'Juneau',
+                    41         state: 'AK',
+                    42         photo: `${this.baseUrl}/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg`,
+                    43         availableUnits: 1,
+                    44         wifi: false,
+                    45         laundry: false,
+                    46       },
+                    47       {
+                    48         id: 3,
+                    49         name: 'Homesteady Housing',
+                    50         city: 'Chicago',
+                    51         state: 'IL',
+                    52         photo: `${this.baseUrl}/ian-macdonald-W8z6aiwfi1E-unsplash.jpg`,
+                    53         availableUnits: 1,
+                    54         wifi: true,
+                    55         laundry: false,
+                    56       },
+                    57       {
+                    58         id: 4,
+                    59         name: 'Happy Homes Group',
+                    60         city: 'Gary',
+                    61         state: 'IN',
+                    62         photo: `${this.baseUrl}/krzysztof-hepner-978RAXoXnH4-unsplash.jpg`,
+                    63         availableUnits: 1,
+                    64         wifi: true,
+                    65         laundry: false,
+                    66       },
+                    67       {
+                    68         id: 5,
+                    69         name: 'Hopeful Apartment Group',
+                    70         city: 'Oakland',
+                    71         state: 'CA',
+                    72         photo: `${this.baseUrl}/r-architecture-JvQ0Q5IkeMM-unsplash.jpg`,
+                    73         availableUnits: 2,
+                    74         wifi: true,
+                    75         laundry: true,
+                    76       },
+                    77       {
+                    78         id: 6,
+                    79         name: 'Seriously Safe Towns',
+                    80         city: 'Oakland',
+                    81         state: 'CA',
+                    82         photo: `${this.baseUrl}/phil-hearing-IYfp2Ixe9nM-unsplash.jpg`,
+                    83         availableUnits: 5,
+                    84         wifi: true,
+                    85         laundry: true,
+                    86       },
+                    87       {
+                    88         id: 7,
+                    89         name: 'Hopeful Housing Solutions',
+                    90         city: 'Oakland',
+                    91         state: 'CA',
+                    92         photo: `${this.baseUrl}/r-architecture-GGupkreKwxA-unsplash.jpg`,
+                    93         availableUnits: 2,
+                    94         wifi: true,
+                    95         laundry: true,
+                    96       },
+                    97       {
+                    98         id: 8,
+                    99         name: 'Seriously Safe Towns',
+                   100         city: 'Oakland',
+                   101         state: 'CA',
+                   102         photo: `${this.baseUrl}/saru-robert-9rP3mxf8qWI-unsplash.jpg`,
+                   103         availableUnits: 10,
+                   104         wifi: false,
+                   105         laundry: false,
+                   106       },
+                   107       {
+                   108         id: 9,
+                   109         name: 'Capital Safe Towns',
+                   110         city: 'Portland',
+                   111         state: 'OR',
+                   112         photo: `${this.baseUrl}/webaliser-_TPTXZd9mOo-unsplash.jpg`,
+                   113         availableUnits: 6,
+                   114         wifi: true,
+                   115         laundry: true,
+                   116       },
+                   117     ];
+                   118
+                   119   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 04, se importa la funcionalidad para crear un arreglo de objetos.
+
+                    B.  En la línea 07, se integra la creación de un arreglo de objetos.
+
+                    C.  En la línea 13, se crea una instancia de la interface 'HousingLocationInterface' tipo arreglo de objetos.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.08.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html': --------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section>
+                    02     <form>
+                    03       <input type="text" placeholder="Filter by city" />
+                    04       <button type="button" class="primary">Search</button>
+                    05     </form>
+                    06     <section class="results">
+                    07       <app-housing-location 
+                    08         *ngFor="let housingLocation of housingLocationList"
+                    09         [housingLocation]="housingLocation">
+                    10       </app-housing-location>
+                    11     </section>
+                    12   <section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 08, se incluye un ciclo *ngFor (snippets) y recorrer el arreglo
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------------------------- 05. SERVICIOS ---------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.01.  Crear el servicio 'housing-service': ------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear el servicio 'housing-service' sin incluir el archivo *.spec.ts desde la terminal:
+                    
+                    ⦿   PS C:\..\..\angular\frontend> ng generate service components/housing-service --skip-tests
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.02.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Injectable } from '@angular/core';
+                    02   import { HousingLocationInterface } from './housing-location-interface';
+                    03 
+                    04   @Injectable({
+                    05     providedIn: 'root'
+                    06   })
+                    07   export class HousingService {
+                    08     
+                    09     constructor(){}
+                    10     
+                    11   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.03.  Cortar código de la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': --------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04   import { CommonModule } from '@angular/common';
+                    05
+                    06   @Component({
+                    07     selector: 'app-home',
+                    08     imports: [CommonModule, HousingLocation],
+                    09     templateUrl: './home.html',
+                    10     styleUrl: './home.css'
+                    11   })
+                    12   export class Home {  
+                    13   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  Desde la línea 14 a la 116 se corta el código, porque el arreglo de objetos debe ser llamado desde un 'service'.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.04.  Pegar el código del paso anterior en la Clase del componente 'housing-service' en 'frontend/src/app/components/housing-service.ts': -------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Injectable } from '@angular/core';
+                    02   import { HousingLocationInterface } from './housing-location-interface';
+                    03
+                    04   @Injectable({
+                    05     providedIn: 'root'
+                    06   })
+                    07   export class HousingService {
+                    08  
+                    09     constructor() {}
+                    10
+                    11     readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+                    12
+                    13     housingLocationList: HousingLocationInterface[] = [
+                    14       {
+                    15         id: 0,
+                    16         name: 'Acme Fresh Start Housing',
+                    17         city: 'Chicago',
+                    18         state: 'IL',
+                    19         photo: `${this.baseUrl}/bernard-hermant-CLKGGwIBTaY-unsplash.jpg`,
+                    20         availableUnits: 4,
+                    21         wifi: true,
+                    22         laundry: true,
+                    23       },
+                    24       {
+                    25         id: 1,
+                    26         name: 'A113 Transitional Housing',
+                    27         city: 'Santa Monica',
+                    28         state: 'CA',
+                    29         photo: `${this.baseUrl}/brandon-griggs-wR11KBaB86U-unsplash.jpg`,
+                    30         availableUnits: 0,
+                    31         wifi: false,
+                    32         laundry: true,
+                    33       },
+                    34       {
+                    35         id: 2,
+                    36         name: 'Warm Beds Housing Support',
+                    37         city: 'Juneau',
+                    38         state: 'AK',
+                    39         photo: `${this.baseUrl}/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg`,
+                    40         availableUnits: 1,
+                    41         wifi: false,
+                    42         laundry: false,
+                    43       },
+                    44       {
+                    45         id: 3,
+                    46         name: 'Homesteady Housing',
+                    47         city: 'Chicago',
+                    48         state: 'IL',
+                    49         photo: `${this.baseUrl}/ian-macdonald-W8z6aiwfi1E-unsplash.jpg`,
+                    50         availableUnits: 1,
+                    51         wifi: true,
+                    52         laundry: false,
+                    53       },
+                    54       {
+                    55         id: 4,
+                    56         name: 'Happy Homes Group',
+                    57         city: 'Gary',
+                    58         state: 'IN',
+                    59         photo: `${this.baseUrl}/krzysztof-hepner-978RAXoXnH4-unsplash.jpg`,
+                    60         availableUnits: 1,
+                    61         wifi: true,
+                    62         laundry: false,
+                    63       },
+                    64       {
+                    65         id: 5,
+                    66         name: 'Hopeful Apartment Group',
+                    67         city: 'Oakland',
+                    68         state: 'CA',
+                    69         photo: `${this.baseUrl}/r-architecture-JvQ0Q5IkeMM-unsplash.jpg`,
+                    70         availableUnits: 2,
+                    71         wifi: true,
+                    72         laundry: true,
+                    73       },
+                    74       {
+                    75         id: 6,
+                    76         name: 'Seriously Safe Towns',
+                    77         city: 'Oakland',
+                    78         state: 'CA',
+                    79         photo: `${this.baseUrl}/phil-hearing-IYfp2Ixe9nM-unsplash.jpg`,
+                    80         availableUnits: 5,
+                    81         wifi: true,
+                    82         laundry: true,
+                    83       },
+                    84       {
+                    85         id: 7,
+                    86         name: 'Hopeful Housing Solutions',
+                    87         city: 'Oakland',
+                    88         state: 'CA',
+                    89         photo: `${this.baseUrl}/r-architecture-GGupkreKwxA-unsplash.jpg`,
+                    90         availableUnits: 2,
+                    91         wifi: true,
+                    92         laundry: true,
+                    93       },
+                    94       {
+                    95         id: 8,
+                    96         name: 'Seriously Safe Towns',
+                    97         city: 'Oakland',
+                    98         state: 'CA',
+                    99         photo: `${this.baseUrl}/saru-robert-9rP3mxf8qWI-unsplash.jpg`,
+                   100         availableUnits: 10,
+                   101         wifi: false,
+                   102         laundry: false,
+                   103       },
+                   104       {
+                   105         id: 9,
+                   106         name: 'Capital Safe Towns',
+                   107         city: 'Portland',
+                   108         state: 'OR',
+                   109         photo: `${this.baseUrl}/webaliser-_TPTXZd9mOo-unsplash.jpg`,
+                   110         availableUnits: 6,
+                   111         wifi: true,
+                   112         laundry: true,
+                   113       },
+                   114     ];
+                   115
+                   116   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  Desde la línea XX se pega el código XX.
+                    
+                    B.  En la línea 02, se importa la interface 'HousingLocationInterface'.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+            
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.05.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component, inject } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04   import { CommonModule } from '@angular/common';
+                    05   import { HousingService } from '../housing-service';
+                    06 
+                    07   @Component({
+                    08     selector: 'app-home',
+                    09     imports: [CommonModule, HousingLocation],
+                    10     templateUrl: './home.html',
+                    11     styleUrl: './home.css'
+                    12   }) 
+                    13   export class Home {
+                    14     housingLocationList: HousingLocationInterface[] = [];
+                    15     housingService: HousingService = inject(HousingService);
+                    16   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 02, se importa la función de inyección de código 'inject'.
+                    
+                    B.  En la línea 05, se importa el servicio 'Housing'.
+                    
+                    C.  En la línea 13, se crea una instancia de la interfaz 'HousingLocationInterface'.
+                    
+                    D.  En la línea 15, se crea un instancia del servicio y se inyecta.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.06.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Injectable } from '@angular/core';
+                    02   import { HousingLocationInterface } from './housing-location-interface';
+                    03
+                    04   @Injectable({
+                    05     providedIn: 'root'
+                    06   })
+                    07   export class HousingService {
+                    08  
+                    09     constructor() { }
+                    10
+                    11     readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+                    12
+                    13 >   housingLocationList: HousingLocationInterface[] = [
+                   114     ];
+                   115
+                   116     getAllHousingLocations(): HousingLocationInterface[] {
+                   117       return this.housingLocationList;
+                   118     }
+                   119
+                   120     getHousingLocantionById(id:number): HousingLocationInterface | undefined {
+                   121       return this.housingLocationList.find((housingLocation) => housingLocation.id === id);
+                   122     }
+                   123
+                   124   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 111, se crea una función que obtenga todos los objetos del arreglo.
+                    
+                    B.  En la línea 118, se crea una función que obtenga un solo objeto por filtro.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.07.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component, inject } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04   import { CommonModule } from '@angular/common';
+                    05   import { HousingService } from '../housing-service';
+                    06 
+                    07   @Component({
+                    08     selector: 'app-home',
+                    09     imports: [CommonModule, HousingLocation],
+                    10     templateUrl: './home.html',
+                    11     styleUrl: './home.css'
+                    12   })
+                    13   export class Home {
+                    14     
+                    15     housingLocationList: HousingLocationInterface[] = [];
+                    16     housingService: HousingService = inject(HousingService);
+                    17 
+                    18     constructor() {
+                    19       this.housingLocationList = this.housingService.getAllHousingLocations();
+                    20     }  
+                    21 
+                    22   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En las líneas 15 y 17, se crea el constructor.
+                    
+                    B.  En la línea 16, se crea una instancia del servicio para llamar la función 'getAllHousingLocation()'.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------------- 06. ENRUTAMIENTO -------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.01.  Crear el componente 'details': ------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear el componente 'details', desde la terminal:                    
+                    
+                    ⦿   PS C:\..\..\angular\frontend> ng g c components/details
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.02.  Modificar los estilos del componente 'home' en 'frontend/src/app/components/details/details.css': -----------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   .listing-photo {
+                    02     height: 600px;
+                    03     width: 50%;
+                    04     object-fit: cover;
+                    05     border-radius: 30px;
+                    06     float: right;
+                    07   }
+                    08   .listing-heading {
+                    09     font-size: 48pt;
+                    10     font-weight: bold;
+                    11     margin-bottom: 15px;
+                    12   }
+                    13   .listing-location::before {
+                    14     content: url('/assets/location-pin.svg') / '';
+                    15   }
+                    16   .listing-location {
+                    17     font-size: 24pt;
+                    18     margin-bottom: 15px;
+                    19   }
+                    20   .listing-features > .section-heading {
+                    21     color: var(--secondary-color);
+                    22     font-size: 24pt;
+                    23     margin-bottom: 15px;
+                    24   }
+                    25   .listing-features {
+                    26     margin-bottom: 20px;
+                    27   }
+                    28   .listing-features li {
+                    29     font-size: 14pt;
+                    30   }
+                    31   li {
+                    32     list-style-type: none;
+                    33   }
+                    34   .listing-apply .section-heading {
+                    35     font-size: 18pt;
+                    36     margin-bottom: 15px;
+                    37   }
+                    38   label, input {
+                    39     display: block;
+                    40   }
+                    41   label {
+                    42     color: var(--secondary-color);
+                    43     font-weight: bold;
+                    44     text-transform: uppercase;
+                    45     font-size: 12pt;
+                    46   }
+                    47   input {
+                    48     font-size: 16pt;
+                    49     margin-bottom: 15px;
+                    50     padding: 10px;
+                    51     width: 400px;
+                    52     border-top: none;
+                    53     border-right: none;
+                    54     border-left: none;
+                    55     border-bottom: solid .3px;
+                    56   }
+                    57   @media (max-width: 1024px) {
+                    58     .listing-photo {
+                    59       width: 100%;
+                    60       height: 400px;
+                    61     }
+                    62   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    B.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.03.  Incorporar 'zona': ------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Incorporar 'zona', desde la terminal:                    
+                    
+                    ⦿   PS C:\..\..\angular\frontend> npm i zone.js
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.04.  Modificar el punto de entrada de la aplicación en el navegador 'frontend/src/main.ts': ----------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import 'zone.js';
+                    02   import { bootstrapApplication } from '@angular/platform-browser';
+                    03   import { App } from './app/app';
+                    04   import { provideRouter } from '@angular/router';
+                    05   import { routes } from './app/app.routes';
+                    06
+                    07   bootstrapApplication(App, {
+                    08     providers: [provideRouter(routes)]
+                    09   }).catch((err) => console.error(err));
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 03, se importa el archivo e inyección de dependencias 'provideRouter'.
+                    
+                    B.  En la línea 05, se importa la función de rutas.
+                    
+                    C.  En las líneas 05, 06 y 07, se implementan las dependencias y las rutas.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.05.  Modificar la Clase del componente principal en 'frontend/src/app/app.ts': -----------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component } from '@angular/core';
+                    02   import { RouterModule, RouterOutlet } from '@angular/router';
+                    03 
+                    04   @Component({
+                    05     selector: 'app-root',
+                    06     imports: [RouterOutlet, RouterModule],
+                    07     templateUrl: './app.html',
+                    08     styleUrl: './app.css'
+                    09   })
+                    10   export class App {
+                    11     protected title:string = 'homes';
+                    12   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 02, se importa el módulo 'RouterModule' para enrutar.
+                    
+                    B.  En la línea 05, se incorpora 'RouterModule' para usar.
+                    
+                    C.  En la línea 10, se cambia el nombre de inicio a 'homes'.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.06.  Modificar la estructura y contenido del componente principal en 'frontend/src/app/app.html': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <main class="main">
+                    02     <a routerLink="/">
+                    03       <header class="brand-home">
+                    04         <img class="brand-logo" src="assets/logo.svg" alt="logo" />
+                    05       </header>
+                    06     </a>
+                    07     <section class="content">
+                    08       <router-outlet></router-outlet>
+                    09     </section>
+                    10   </main>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 02, se enruta el componente inicial.
+                    
+                    B.  En la línea 08, se habilita el selector de rutas.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.07.  Modificar el enrutador 'app.routes' en 'frontend/src/app/app.routes.ts': ------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Routes } from '@angular/router';
+                    02   import { Home } from './components/home/home';
+                    03   import { Details } from './components/details/details';
+                    04
+                    05   export const routes: Routes = [
+                    06       {path:'', component:Home, title: 'Home Page'},
+                    07       {path:'details/:id', component:Details, title: 'Home Details'},
+                    08   ];
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 02, se importa el componente 'Home'.
+                    
+                    B.  En la línea 03, se importa el componente 'Details'.
+                    
+                    C.  De las línes 04 a la 07, se agrega información al arreglo de rutas.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.08.  Modificar la Clase del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.ts': ---------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component, Input } from '@angular/core';
+                    02   import { HousingLocationInterface } from '../housing-location-interface';
+                    03   import { RouterModule } from '@angular/router';
+                    04   import { CommonModule } from '@angular/common';
+                    05
+                    06   @Component({
+                    07     selector: 'app-housing-location',
+                    08     imports: [RouterModule, CommonModule],
+                    09     templateUrl: './housing-location.html',
+                    10     styleUrl: './housing-location.css'
+                    11   })
+                    12   export class HousingLocation {
+                    13     @Input() housingLocation!: HousingLocationInterface;
+                    14   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 03, se importa la función de 'RouterModule' para enrutar.
+                    
+                    B.  En la línea 04, se importa la función de 'CommonModule' para compartir con 'home'.
+                    
+                    C.  En la línea 07, se integra 'RouterModule' y 'CommonModule' al componente.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.09.  Modificar estructura y contenido del componente 'housing-location' en 'frontend/src/app/components/housing-location/housing-location.html': -----------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section class="listing">
+                    02     <img
+                    03       class="listing-photo"
+                    04       [src]="housingLocation.photo"
+                    05       alt="Exterior photo of {{ housingLocation.name }}"
+                    06       crossorigin
+                    07     />
+                    08     <h2 class="listing-heading">{{ housingLocation.name }}</h2>
+                    09     <p class="listing-location">{{ housingLocation.city }}, {{ housingLocation.state }}</p>
+                    10     <a [routerLink]="['/details', housingLocation.id]" routerLinkActive="router-link-active">Learn More</a>
+                    11   </section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 03, se importa la función de 'RouterModule' para enrutar.
+                    
+                    B.  En la línea 04, se importa la función de 'CommonModule' para compartir con 'home'.
+                    
+                    C.  En la línea 10, se agrega el router link para cargar el componente 'Details'.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.10.  Modificar la Clase del componente 'details' en 'frontend/src/app/components/details/details.ts': ------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { CommonModule } from '@angular/common';
+                    02   import { Component, inject } from '@angular/core';
+                    03   import { ActivatedRoute } from '@angular/router';
+                    04   import { HousingService } from '../housing-service';
+                    05   import { HousingLocationInterface } from '../housing-location-interface';
+                    06 
+                    07   @Component({
+                    08     selector: 'app-details',
+                    09     imports: [CommonModule],
+                    10     templateUrl: './details.html',
+                    11     styleUrl: './details.css'
+                    12   })
+                    13   export class Details {
+                    14     route: ActivatedRoute = inject(ActivatedRoute);
+                    15     housingService = inject(HousingService);
+                    16     housingLocation: HousingLocationInterface | undefined;
+                    17     constructor(){
+                    18       const housinLocationId = Number(this.route.snapshot.params['id']);
+                    19       this.housingLocation = this.housingService.getHousingLocantionById(housinLocationId);
+                    20     }
+                    21   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 01, se importa 'CommonModule' para crear un arreglo a partir de la Interfaz.
+                    
+                    B.  En la línea 02, se importa 'inject' para introducir código.
+                    
+                    C.  En la línea 03, se importa 'ActivatedRoute' para determinar las rutas activas.
+                    
+                    D.  En la línea 04, se importa 'Housing' para llamar al servicio.
+                    
+                    E.  En la línea 05, se importa 'HousingLocationInterface' para llamar la Interfaz.
+                    
+                    F.  En la línea 08, se 'CommonModule' como componente común.
+                    
+                    G.  Desde la Línea 12 a la 20, se incluye la inyección, el arreglo, las rutas, el servicio y la interfaz.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.11.  Modificar la estructura y contenido del componente 'details' en 'frontend/src/app/components/details/details.html': -----------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <article>
+                    02     <img
+                    03       class="listing-photo"
+                    04       [src]="housingLocation?.photo"
+                    05       alt="Exterior photo of {{ housingLocation?.name }}"
+                    06       crossorigin
+                    07     />
+                    08     <section class="listing-description">
+                    09       <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
+                    10       <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
+                    11     </section>
+                    12     <section class="listing-features">
+                    13       <h2 class="section-heading">About this housing location</h2>
+                    14       <ul>
+                    15         <li>Units available: {{ housingLocation?.availableUnits }}</li>
+                    16         <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
+                    17         <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
+                    18       </ul>
+                    19     </section>
+                    20   </article>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------------------- 07. FORMULARIOS REACTIVOS ---------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 07.01.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   import { Injectable } from '@angular/core';
+                    02   import { HousingLocationInterface } from './housing-location-interface';
+                    03
+                    04   @Injectable({
+                    05     providedIn: 'root'
+                    06   })
+                    07   export class HousingService{
+                    08  
+                    09     constructor() { }
+                    10
+                    11     readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+                    12
+                    13 >   housingLocationList: HousingLocationInterface[] = [
+                   114     ];
+                   115
+                   116     getAllHousingLocations(): HousingLocationInterface[] {
+                   117       return this.housingLocationList;
+                   118     }
+                   119
+                   120     getHousingLocantionById(id:number): HousingLocationInterface | undefined {
+                   121       return this.housingLocationList.find((housingLocation) => housingLocation.id === id);
+                   122     }
+                   123
+                   124     submitApplication(firstName:string, lastName:string, email:string){
+                   125       console.log(`FirstName: ${firstName} - LastName: ${lastName} - Email: ${email}`)
+                   126     }
+                   127
+                   128   }
+
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  De la línea 124 a 126, se crea una función para capturar datos desde el formulario y mostralo en la consola.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 07.02.  Modificar la Clase del componente 'details' en 'frontend/src/app/components/details/details.ts': ------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { CommonModule } from '@angular/common';
+                    02   import { Component, inject } from '@angular/core';
+                    03   import { ActivatedRoute } from '@angular/router';
+                    04   import { HousingService } from '../housing-service';
+                    05   import { HousingLocationInterface } from '../housing-location-interface';
+                    06   import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+                    07
+                    08   @Component({
+                    09     selector: 'app-details',
+                    10     imports: [CommonModule, ReactiveFormsModule],
+                    11     templateUrl: './details.html',
+                    12     styleUrl: './details.css'
+                    13   })
+                    14   export class Details {
+                    15  
+                    16     route: ActivatedRoute = inject(ActivatedRoute);
+                    17     housingService = inject(HousingService);
+                    18     housingLocation: HousingLocationInterface | undefined;
+                    19
+                    20     constructor(){
+                    21       const housinLocationId = Number(this.route.snapshot.params['id']);
+                    22       this.housingLocation = this.housingService.getHousingLocantionById(housinLocationId);
+                    23     }
+                    24
+                    25     formAngular = new FormGroup({
+                    26       firstName: new FormControl(''),
+                    27       lastName: new FormControl(''),
+                    28       email: new FormControl(''),
+                    29     });
+                    30
+                    31     onSubmit(){
+                    32       this.housingService.submitApplication(
+                    33         this.formAngular.value.firstName ?? '',
+                    34         this.formAngular.value.lastName ?? '',
+                    35         this.formAngular.value.email ?? '',
+                    36       )
+                    37     }
+                    38
+                    39   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 06, se importa el formulario, sus controles y la reactividad.
+                    
+                    B.  En la línea 09, se incluye la importación del formulario reactivo.
+                    
+                    C.  De la línea 21 a la 25, se crea el formulario reactivo.
+                    
+                    D.  De la línea 26 a la 32, se envían los datos del formulario.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 07.03.  Modificar la estructura y contenido del componente 'details' en 'frontend/src/app/components/details/details.html': -----------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <article>
+                    02   <img
+                    03       class="listing-photo"
+                    04       [src]="housingLocation?.photo"
+                    05       alt="Exterior photo of {{ housingLocation?.name }}"
+                    06       crossorigin
+                    07   />
+                    08   <section class="listing-description">
+                    09       <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
+                    10       <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
+                    11   </section>
+                    12   <section class="listing-features">
+                    13       <h2 class="section-heading">About this housing location</h2>
+                    14       <ul>
+                    15       <li>Units available: {{ housingLocation?.availableUnits }}</li>
+                    16       <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
+                    17       <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
+                    18       </ul>
+                    19   </section>
+                    20   <section>
+                    21       <h2>Apply now to live here</h2>
+                    22       <form [formGroup]="formAngular" (submit)="onSubmit()">
+                    23       <label for="first-name">First Name</label>
+                    24       <input type="text" id="first-name" formControlName="firstName" />
+                    25       <label for="last-name">Last Name</label>
+                    26       <input type="text" id="last-name" formControlName="lastName" />
+                    27       <label for="email">Email</label>
+                    28       <input type="email" id="email" formControlName="email" />
+                    29       <button type="submit" class="primary">Apply now </button>
+                    30       </form>
+                    31   </section>
+                    32   </article>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  De la línea 20 a la 31, se abre y cierra una 'section'.
+                    
+                    B.  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    
+                    C.  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                    
+                    D.  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+            
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 07.04.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Component, inject } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04   import { CommonModule } from '@angular/common';
+                    05   import { Housing } from '../housing';
+                    06
+                    07   @Component({
+                    08     selector: 'app-home',
+                    09     imports: [CommonModule, HousingLocation],
+                    10     templateUrl: './home.html',
+                    11     styleUrl: './home.css'
+                    12   })
+                    13
+                    14   export class Home {
+                    15
+                    16     housingLocationList: HousingLocationInterface[] = [];
+                    17     housingService: Housing = inject(Housing);
+                    18     filteredLocationList: HousingLocationInterface[] = [];
+                    19
+                    20     constructor() {
+                    21       this.housingLocationList = this.housingService.getAllHousingLocations();
+                    22       this.filteredLocationList = this.housingLocationList;
+                    23     }
+                    24
+                    25     filterResults(text:string){
+                    26       if (!text) {
+                    27         this.filteredLocationList = this.housingLocationList;
+                    28         return;
+                    29       } else {
+                    30         this.filteredLocationList = this.housingLocationList.filter((HousingLocation) =>
+                    31           HousingLocation?.city.toLowerCase().includes(text.toLowerCase())
+                    32         )
+                    33       }
+                    34     }
+                    35
+                    36   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 15, se crea una instancia de la Interfaz para filtrar el arreglo de objetos.
+                    
+                    B.  En la línea 22, se incluye la creación del objeto desde el constructor.
+
+                    C.  De la línea 20 a las 29, se crea un método para mostrar toda la lista o un solo elemento.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 07.05.  Modificar la estructura y contenido del componente 'home' en 'frontend/src/app/components/home/home.html': --------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   <section>
+                    02     <form>
+                    03       <input type="text" placeholder="Filter by city" #filter/>
+                    04       <button type="button" class="primary" (click)="filterResults(filter.value)">Search</button>
+                    05     </form>
+                    06     <section class="results">
+                    07       <app-housing-location 
+                    08         *ngFor="let housingLocation of filteredLocationList"
+                    09         [housingLocation]="housingLocation">
+                    10       </app-housing-location>
+                    11     </section>
+                    12   <section>
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  En la línea 03, se incluye un atributo filtrado.
+                    
+                    B.  En la línea 04, se incluye el método filtrado.
+
+                    C.  En la línea 08, se incluye 'filteredLocationList' para recorrer el arreglo.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------- 08. HTTP FETCH Y JSON SERVER -------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 08.01.  Crear el Servidor Json Server: ------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear una carpeta denominada 'backend' fuera del proyecto, ejemplo 'angular/backend'.
+            
+            02. Abrir una nueva terminal en vs code -> 'Terminal / New Terminal' ó 'Ctrl + Shift + ñ'.
+                    
+            03. Cambiar el nombre de la terminal a 'backend', seleccionándola en la parte inferior derecha y presionando F2 / Rename...                    
+            
+            04. Ingresar a la carpeta 'backend' desde la terminal:
+
+                    ⦿   PS C:\..\angular> cd backend
+
+            05. Inicializar un proyecto de node.js desde la terminal:
+
+                    ⦿   PS C:\..\backend> npm init -y
+
+            06. Instalar 'jsonserver' desde la terminal:
+
+                    ⦿   PS C:\..\backend> npm install json-server
+
+            08. Descargar a la carpeta 'backend' la base de datos 'db.json' desde el siguiente enlace:             
+
+                         https://github.com/ProfeAlbeiro/angular/blob/main/sources/db/db.json
+
+            09. Ejecutar el servidor 'jsonserver' desde la terminal para asociarlo a la base de datos:
+
+                    ⦿   PS C:\..\backend> npx json-server db.json
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 08.02.  Modificar el servicio 'housing-service' en 'frontend/src/app/components/housing-service.ts': ----------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { Injectable } from '@angular/core';
+                    02   import { HousingLocationInterface } from './housing-location-interface';
+                    03
+                    04   @Injectable({
+                    05   providedIn: 'root'
+                    06   })
+                    07   export class HousingService {
+                    08  
+                    09     constructor() { }  
+                    10
+                    11     url = 'http://localhost:3000/locations';
+                    12
+                    13     async getAllHousingLocations(): Promise<HousingLocationInterface[]> {
+                    14       const data = await fetch(this.url);
+                    15       return (await data.json());
+                    16     }
+                    17
+                    18     async getHousingLocationById(id:number): Promise<HousingLocationInterface | undefined> {
+                    19       const data = await fetch(`${this.url}/${id}`);
+                    20       return (await data.json()) ?? {};
+                    21     }
+                    22
+                    23     submitApplication(firstName:string, lastName:string, email:string){
+                    24       console.log(`FirstName: ${firstName} - LastName: ${lastName} - Email: ${email}`)
+                    25     }
+                    26
+                    27   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  Se eliminan las líneas de la 08 a la 110.
+                    
+                    B.  En la línea 08, se incluye el consumo de la API para peticiones HTTP.
+
+                    C.  De la línea 13 a la 16 y 17 a la 19, se modifican las funciones para traer todos los objetos y el que trae uno, 
+                        respectivamente.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 08.03.  Modificar la Clase del componente 'home' en 'frontend/src/app/components/home/home.ts': ---------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            02. Modificar el código del archivo 'frontend/src/app/components/home/home.ts' 
+
+                    01   import { Component, inject } from '@angular/core';
+                    02   import { HousingLocation } from '../housing-location/housing-location';
+                    03   import { HousingLocationInterface } from '../housing-location-interface';
+                    04   import { CommonModule } from '@angular/common';
+                    05   import { HousingService } from '../housing-service';
+                    06 
+                    07   @Component({
+                    08     selector: 'app-home',
+                    09     imports: [CommonModule, HousingLocation],
+                    10     templateUrl: './home.html',
+                    11     styleUrl: './home.css'
+                    12   })
+                    13   export class Home {
+                    14     
+                    15     housingLocationList: HousingLocationInterface[] = [];
+                    16     housingService: HousingService = inject(HousingService);
+                    17     filteredLocationList: HousingLocationInterface[] = [];
+                    18     
+                    19     constructor(){
+                    20       this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocationInterface[]) => {
+                    21         this.housingLocationList = housingLocationList;
+                    22         this.filteredLocationList = housingLocationList;
+                    23       })
+                    24     }
+                    25 
+                    26     filterResults(text:string){
+                    27       if (!text) {
+                    28         this.filteredLocationList = this.housingLocationList;
+                    29         return;
+                    30       } else {
+                    31         this.filteredLocationList = this.housingLocationList.filter((HousingLocation) =>
+                    32           HousingLocation?.city.toLowerCase().includes(text.toLowerCase())
+                    33         )
+                    34       }
+                    35     }
+                    36     
+                    37   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  De la línea 17 a la 20, se modifica la información del llamado a las funciones desde el contructor.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 08.04.  Modificar la Clase del componente 'details' en 'frontend/src/app/components/details/details.ts': ------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   import { CommonModule } from '@angular/common';
+                    02   import { Component, inject } from '@angular/core';
+                    03   import { ActivatedRoute } from '@angular/router';
+                    04   import { HousingService } from '../housing-service';
+                    05   import { HousingLocationInterface } from '../housing-location-interface';
+                    06   import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+                    07
+                    08   @Component({
+                    09     selector: 'app-details',
+                    10     imports: [CommonModule, ReactiveFormsModule],
+                    11     templateUrl: './details.html',
+                    12     styleUrl: './details.css'
+                    13   })
+                    14   export class Details {
+                    15
+                    16     route: ActivatedRoute = inject(ActivatedRoute);
+                    17     housingService = inject(HousingService);
+                    18     housingLocation: HousingLocationInterface | undefined;
+                    19
+                    20     constructor(){
+                    21       const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
+                    22       this.housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {
+                    23         this.housingLocation = housingLocation;
+                    24       })
+                    25     }
+                    26
+                    27     formAngular = new FormGroup({
+                    28       firstName: new FormControl(''),
+                    29       lastName: new FormControl(''),
+                    30       email: new FormControl(''),
+                    31     });
+                    32
+                    33     onSubmit(){
+                    34       this.housingService.submitApplication(
+                    35         this.formAngular.value.firstName ?? '',
+                    36         this.formAngular.value.lastName ?? '',
+                    37         this.formAngular.value.email ?? '',
+                    38       )
+                    39     }
+                    40
+                    41   }
+
+                ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
+                |                                                                                                                                         |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |---------------------------------------------------------------------------------------------------------------------------------------- |
+                
+                    A.  De la línea 18 a la 21, se modifica la información del llamado a las funciones desde el contructor.
+                |                                                                                                                                         |
+                └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||----------------------------------------------------------------- 09. DESPLIEGUE (EN CONSTRUCCIÓN) -----------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 09.01.  Configurar el proyecto Angular para GitHub Pages En 'angular.json' (Línea 16): ------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    12   "architect": {
+                    13     "build": {
+                    14       "builder": "@angular/build:application",
+                    15       "options": {
+                    16         "baseHref": "/frontend/", 
+                    17         "browser": "src/main.ts",
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 09.02.  Instalar el paquete angular-cli-ghpages para facilitar el despliegue: ---------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    ⦿   PS C:\..\frontend> npm install -g angular-cli-ghpages
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 09.03.  Construir el proyecto para producción, en carpeta 'dist/frontend/browser/': ---------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    ⦿   PS C:\..\frontend> ng build --configuration production 
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 09.04.  Subir el proyecto a GitHub Pages: ---------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    ⦿   PS C:\..\frontend> npx angular-cli-ghpages --dir=dist/frontend/browser/
+            
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 09.05.  Comprobar la configuración del repositorio en GitHub: -------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+            
+                    ⦿   'Settings / Pages / Branch: gh-pages / Folder: / (root) / Save'
+
+
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------------------ ANEXOS ------------------------------------------------------------------------------|||
+||| ------------------------------------------------------------------------- TENER EN CUENTA -------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_01.  Subir el proyecto a un repositorio 'Github': ----------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            Para evitar confusiones y seguir los pasos correctamente, la carpeta raíz del proyecto se llamará 'angular'.
+            
+            01. Verificar que no haya una cuenta de 'Github' asociada al computador, para ello, debe abrir el 'Panel de Control', dar clic en 'Cuentas 
+                de usuario / Administrar credenciales de Windows'. Si hay una cuenta asociada 'git:https://github.com', dar clic sobre la cuenta y clic
+                sobre la opción 'Quitar'. 
+            
+            NOTA:   ⦿   De no funcionar este método porque no tiene acceso al Panel de control, pruebe abriendo el 'Windows PowerShell' y digite el 
+                         siguiente comando:
+
+                         PS C:\..\..> echo "protocol=https`nhost=github.com`n" | git credential-manager erase
+            
+            02. Abrir su cuenta de 'Github' y en la parte superior derecha, dar clic al 'Nombre de su cuenta / Your Repositories'. Dar clic a 'New'.
+                En el control de texto 'Repository name', escribir el nombre de la carpeta raíz de su proyecto (ejemplo, 'angular'. La carpeta raíz no debe 
+                tener espacios, ni caracteres compuesto, ni caracteres especiales) y dar clic en 'Create Repository'.
+
+            NOTA:   ⦿   Si no tiene cuenta en 'GitHub', debe crear una.
+            
+            03. Clic derecho sobre la carpeta raíz (ejemplo, 'angular') y seleccionar la opción 'Open Git Bash here'; si no se 
+                encuentra la opción, hay que instalar 'Git'.
+            
+            04. En el 'Git Bash' escribir lo siguiente:
+
+                    $ git config --global user.name "nombre de su cuenta"
+                    $ git config --global user.email "correo de su cuenta"
+
+                    $ git init
+                    $ git branch -M main
+                    $ git remote add origin https://github.com/SenaProfeAlbeiro/angular.git
+                    $ git add .
+                    $ git commit -m "Subiendo Proyecto"
+                    $ git push -u origin main
+
+            05. Va a aparecer una ventana denominada 'Connect to Github', dar clic en la opción 'Sign in with your browser', dar clic en 'Authentication 
+                Succeeded'. Verificar que se haya abierto en el navegador que tiene abierta la cuenta, de lo contrario hay que escribir nuevamente las
+                credenciales de 'Github'. En el 'Git Bash' debe aparecer texto similar al siguiente:
+
+                    Enumerating objects: 3, done.
+                    Counting objects: 100% (3/3), done.
+                    Writing objects: 100% (3/3), 226 bytes | 226.00 KiB/s, done.
+                    Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+                    To https://github.com/SenaProfeAlbeiro/ej01_n_capas_php_sql_html.git
+                    * [new branch]      main -> main
+                    branch 'main' set up to track 'origin/main'.
+            
+            06. Actualizar la ventana del navegador donde se encuentra abierta su cuenta de 'Github'
+            
+            07. Para actualizar la información del proyecto en 'Github', en el 'Git bash' escribir los siguientes comandos:
+
+                    $ git add .
+                    $ git commit -m "Comentario del cambio"
+                    $ git push
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_02.  Clonar un proyecto 'Github': --------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir su cuenta de 'Github' y en la parte superior derecha, dar clic al 'Nombre de su cuenta / Your Repositories'. 
+
+            02. Dar click al proyecto que desea clonar, en el caso del ejemplo es 'angular'.
+
+            03. Dar click a la opción '<> Code / Copy url to clipboard'.
+
+            04. Ir a una carpeta de Windows, por ejemplo, en el 'Escritorio' (en el caso del ejemplo, 'angular').
+
+            05. Click derecho sobre el área de trabajo y seleccionar la opción 'Open Git Bash here'; si no se encuentra la opción, hay que instalar 
+                'Git'.
+ 
+            06. En el 'Git Bash' pegar el repositorio clonado de 'Github' con 'CTRL + INSERT', quedando como sigue:
+
+                    $ git clone https://github.com/SenaProfeAlbeiro/angular.git
+
+            NOTA:   ⦿   Si el proyecto ya se encuentra en el computador, puede utilizar el siguiente comando para actualizar la información:
+                    
+                    $ git pull
+            
+            07. Abrir el proyecto en Visual Studio Code.
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_03. Puesta en Marcha del Proyecto: -------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Garantizar el ambiente de desarrollo (Ver apartado 'CONFIGURACIÓN ENTORNO').
+            
+            02. Clonar el proyecto desde github en cualquier parte del computador (Ejp, Escritorio).
+            
+            03. Abrir el proyecto en Visual Studio Code.
+            
+            04. Abrir una terminal y ubicarse en el proyecto:
+
+                    ⦿   PS C:\..\..> cd frontend
+
+            05. Cambiar el nombre de la terminal a 'frontend', seleccionándola en la parte inferior derecha y presionando F2 / Rename...
+
+            06. Instalar dependencias de Angular desde la terminal:
+
+                    ⦿   PS C:\..\frontend> npm install
+
+            07. Ejecutar el servidor de 'angular':
+
+                    ⦿   PS C:\..\frontend> ng s -o
+
+            08. Abrir una terminal y ubicarse en el servidor json:
+
+                    ⦿   PS C:\..\..> cd backend
+            
+            09. Cambiar el nombre de la terminal a 'backend', seleccionándola en la parte inferior derecha y presionando F2 / Rename...
+
+            10. Ejecutar el servidor 'jsonserver':
+
+                    ⦿   PS C:\..\backend> npx json-server db.json
+
