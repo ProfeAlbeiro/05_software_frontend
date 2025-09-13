@@ -182,25 +182,25 @@
                 ├── public                                                # C. Recursos estáticos (imágenes, íconos, manifest.json, etc.).
                 ├── src                                                   # C. Carpeta principal del código fuente de Angular.
                 │   ├── app/                                              # C. Carpeta de la aplicación principal (componentes, servicios, módulos).
+                │   │   └── components/                                   # C. Componentes de la aplicaciòn
+                │   │   │   ├── details/                                  # C. Componente detalles
+                │   │   │   │   ├── details.css                           # A. Estilos del componente detalles
+                │   │   │   │   ├── details.html                          # A. Estructura y contenido del componente detalles
+                │   │   │   │   ├── details.spec.ts                       # A. Pruebas para el componente detalles
+                │   │   │   │   └── details.ts                            # A. Clase del componente detalles
+                │   │   │   ├── home/                                     # C. Componente home
+                │   │   │   │   ├── home.css                              # A. Estilos del componente home
+                │   │   │   │   ├── home.html                             # A. Estructura y contenido del componente home
+                │   │   │   │   ├── home.spec.ts                          # A. Pruebas para el componente home
+                │   │   │   │   └── home.ts                               # A. Clase del componente home
+                │   │   │   ├── housing-location/                         # C. Componente housing-location
+                │   │   │   │   ├── housing-location.css                  # A. Estilos del componente housing-location
+                │   │   │   │   ├── housing-location.html                 # A. Estructura y contenido del componente housing-location
+                │   │   │   │   ├── housing-location.spec.ts              # A. Pruebas para el componente housing-location
+                │   │   │   │   └── housing-location.ts                   # A. Clase del componente housing-location
+                │   │   │   ├── housing-location-interface.ts             # A. Interface (Modelo) de los componentes 'home', 'housing-location' y 'details'
+                │   │   │   └── housing-service.ts                        # A. Servicio (métodos de consumo de la API) para los componentes anteriores
                 │   │   ├── app.config.server.ts                          # A. Configuración para el renderizado del lado del servidor (SSR:Angular Universal).
-                │   │   │   └── components/                               # C. Componentes de la aplicaciòn
-                │   │   │       ├── details/                              # C. Componente detalles
-                │   │   │       │   ├── details.css                       # A. Estilos del componente detalles
-                │   │   │       │   ├── details.html                      # A. Estructura y contenido del componente detalles
-                │   │   │       │   ├── details.spec.ts                   # A. Pruebas para el componente detalles
-                │   │   │       │   └── details.ts                        # A. Clase del componente detalles
-                │   │   │       ├── home/                                 # C. Componente home
-                │   │   │       │   ├── home.css                          # A. Estilos del componente home
-                │   │   │       │   ├── home.html                         # A. Estructura y contenido del componente home
-                │   │   │       │   ├── home.spec.ts                      # A. Pruebas para el componente home
-                │   │   │       │   └── home.ts                           # A. Clase del componente home
-                │   │   │       ├── housing-location/                     # C. Componente housing-location
-                │   │   │       │   ├── housing-location.css              # A. Estilos del componente housing-location
-                │   │   │       │   ├── housing-location.html             # A. Estructura y contenido del componente housing-location
-                │   │   │       │   ├── housing-location.spec.ts          # A. Pruebas para el componente housing-location
-                │   │   │       │   └── housing-location.ts               # A. Clase del componente housing-location
-                │   │   │       ├── housing-location-interface.ts         # A. Interface (Modelo) de los componentes 'home', 'housing-location' y 'details'
-                │   │   │       └── housing-service.ts                    # A. Servicio (métodos de consumo de la API) para los componentes anteriores
                 │   │   ├── app.config.ts                                 # A. Configuración general de la aplicación (módulos, dependencias, providers).
                 │   │   ├── app.css                                       # A. Estilos globales específicos del componente raíz.
                 │   │   ├── app.html                                      # A. Plantilla principal 'html' del componente raíz (App).
