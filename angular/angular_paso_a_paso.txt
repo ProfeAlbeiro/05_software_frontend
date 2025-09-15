@@ -1931,26 +1931,26 @@
                     02   import { HousingLocation } from '../housing-location/housing-location';
                     03   import { HousingLocationInterface } from '../housing-location-interface';
                     04   import { CommonModule } from '@angular/common';
-                    05   import { Housing } from '../housing';
-                    06
+                    05   import { HousingService } from '../housing-service';
+                    06 
                     07   @Component({
                     08     selector: 'app-home',
                     09     imports: [CommonModule, HousingLocation],
                     10     templateUrl: './home.html',
                     11     styleUrl: './home.css'
                     12   })
-                    13
+                    13 
                     14   export class Home {
-                    15
+                    15 
                     16     housingLocationList: HousingLocationInterface[] = [];
-                    17     housingService: Housing = inject(Housing);
+                    17     housingService: HousingService = inject(HousingService);
                     18     filteredLocationList: HousingLocationInterface[] = [];
-                    19
+                    19 
                     20     constructor() {
                     21       this.housingLocationList = this.housingService.getAllHousingLocations();
                     22       this.filteredLocationList = this.housingLocationList;
                     23     }
-                    24
+                    24 
                     25     filterResults(text:string){
                     26       if (!text) {
                     27         this.filteredLocationList = this.housingLocationList;
@@ -1961,7 +1961,7 @@
                     32         )
                     33       }
                     34     }
-                    35
+                    35 
                     36   }
 
                 ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
