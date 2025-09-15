@@ -234,17 +234,22 @@
 
             02. Abrir con 'Visual Studio Code' la carpeta creada, es decir,'angular'.
 
+
             03. Abrir una terminal en Visual Studio Code ('Terminal / New Terminal' ó 'Ctrl + Shift + ñ')
             
-            04. Instalar Angular escribiendo desde la terminal:
-            
-                    ⦿   PS C:\..\..\angular> npm install -g @angular/cli@20.0.1
-             
-            05. Verificar las versiones de node.js y angular desde la terminal:
+            04. Verificar si hay versiones de Angular instaladas desde la terminal:
 
                     ⦿   PS C:\..\..\angular> ng version
+            
+            05. Si hay alguna version de Angular instalada, diferente a Angular 20, desinstalarla escribiendo en la terminal:
+            
+                    ⦿   PS C:\..\..\angular> npm uninstall -g @angular/cli
 
-            06. Crear un proyecto de angular desde la terminal:
+            06. Instalar Angular 20, escribiendo desde la terminal:
+            
+                    ⦿   PS C:\..\..\angular> npm install -g @angular/cli@20.0.1             
+
+            07. Crear un proyecto de angular desde la terminal:
 
                     ⦿   PS C:\..\..\angular> ng new frontend
 
