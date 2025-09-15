@@ -253,9 +253,9 @@
 
                     ⦿   PS C:\..\..\angular> ng new frontend
 
-                          ? Do you want to create a 'zoneless' application without zone.js (Developer Preview)? (y/N) y                          
+                          ? Do you want to create a 'zoneless' application without zone.js (Developer Preview)? (y/N) n                          
                           ❯ CSS             [ https://developer.mozilla.org/docs/Web/CSS                     ]
-                          ? Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (y/N) y
+                          ? Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (y/N) n
 
                 ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
                 |                                                                                                                                         |
