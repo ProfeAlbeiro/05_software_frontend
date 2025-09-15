@@ -10,16 +10,17 @@ import { HousingService } from '../housing-service';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-
 export class Home {
-
+  
   housingLocationList: HousingLocationInterface[] = [];
   housingService: HousingService = inject(HousingService);
   filteredLocationList: HousingLocationInterface[] = [];
-
-  constructor() {
-    this.housingLocationList = this.housingService.getAllHousingLocations();
-    this.filteredLocationList = this.housingLocationList;
+  
+  constructor(){
+    this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocationInterface[]) => {
+      this.housingLocationList = housingLocationList;
+      this.filteredLocationList = housingLocationList;
+    })
   }
 
   filterResults(text:string){
@@ -32,5 +33,5 @@ export class Home {
       )
     }
   }
-
+  
 }

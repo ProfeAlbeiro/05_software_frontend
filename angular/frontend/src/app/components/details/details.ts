@@ -18,8 +18,10 @@ export class Details {
   housingLocation: HousingLocationInterface | undefined;
 
   constructor(){
-    const housinLocationId = Number(this.route.snapshot.params['id']);
-    this.housingLocation = this.housingService.getHousingLocantionById(housinLocationId);
+    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
+    this.housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {
+      this.housingLocation = housingLocation;
+    })
   }
 
   formAngular = new FormGroup({
