@@ -303,7 +303,12 @@
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |-- 02.06.  Crear la estructura de carpetas y los archivos del proyecto: ------------------------------------------------------------------------------------------------|
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+            
+            01. En la Terminal de 'Visual Studio Code', escribir los siguientes comandos:
                                                                                                                                                       
+                    ⦿   PS C:\..\frontend_web> cd src
+                    ⦿   PS C:\..\frontend_web> mkdir srccomponents views domain data styles utils
+                    
                                                                                                                                                       # C = Carpetas
                                                                                                                                                       # A = Archivos
 
@@ -311,10 +316,10 @@
                     └── frontend_web/                                                   # C. Carpeta raíz del proyecto en React Native.
         (NO CREAR)      ├── public/                                                     # C. Recursos estáticos
                         │   ├── index.html                                              # A. Punto de entrada HTML
-        (NO CREAR)      │   ├── vite.svg                                                # A. Ícono de la aplicación
-                        │   └── assets/                                                 # C. Recursos estáticos
-                        │       └── images/                                             # A. imágenes
+        (NO CREAR)      │   └── vite.svg                                                # A. Ícono de la aplicación
                         ├── src/                                                        # C. Código fuente de la aplicación
+                        │   └── assets/                                                 # C. Recursos estáticos
+                        │       └── react.svg                                           # A. imágenes
                         │   ├── components/                                             # C. Componentes de interfaz de usuario
                         │   │   ├── ui/                                                 # C. Componentes de UI reutilizables
                         │   │   │   ├── inputs/                                         # C. Componentes de entrada de datos
