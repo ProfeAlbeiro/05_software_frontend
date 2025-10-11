@@ -241,10 +241,11 @@
             
             02. Abrir la carpeta 'proyecto' en Visual Studio Code.
 
-            03. En la terminal de 'Visual Studio Code', crear el proyecto:
+            03. En la terminal de 'Visual Studio Code', crear el proyecto:                    
 
                     ⦿   PS C:\..\> npm create vite@latest frontend_web -- --template react
 
+                            
                             Need to install the following packages:
                             create-vite@8.0.2
                             Ok to proceed? (y) y                           
@@ -283,6 +284,7 @@
                               ➜  Network: use --host to expose
                               ➜  press h + enter to show help
 
+                    # O con Create React App (PS C:\..\> npx create-react-app frontend_web)
 
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |-- 02.05.  Instalar otras dependencias: --------------------------------------------------------------------------------------------------------------------------------|
@@ -292,7 +294,12 @@
 
                     ⦿   PS C:\..\..> cd frontend_web
                     ⦿   PS C:\..\frontend_web> npm install
-                    
+                    ⦿   PS C:\..\frontend_web> npm install react-router-dom
+                    ⦿   PS C:\..\frontend_web> npm install zustand
+                    ⦿   PS C:\..\frontend_web> npm install axios
+                    ⦿   PS C:\..\frontend_web> npm install styled-components
+
+
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |-- 02.06.  Crear la estructura de carpetas y los archivos del proyecto: ------------------------------------------------------------------------------------------------|
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -300,73 +307,95 @@
                                                                                                                                                       # C = Carpetas
                                                                                                                                                       # A = Archivos
 
-                    proyecto/                                                           # C. Proyecto móvil en React Native.
-                    └── frontend_web/                                                       # C. Carpeta raíz del proyecto en React Native.
-        (NO CREAR)      ├── .expo/                                                      # C. Configuraciones del proyecto utilizados por la herramienta 'Expo'
-        (NO CREAR)      ├── assets/                                                     # C. Recursos estáticos (imágenes, fuentes).
-        (NO CREAR)      ├── node_modules/                                               # C. Dependencias (librerías) instaladas para el frontend_web.
-                        ├── src/                                                        # C. Carpetas y archivos de la aplicación React Native.
-                        │   ├── data/                                                   # C. Capa para obtención y manipulación de datos.
-                        │   │   ├── repositories/                                       # C. Interfaces para acceder a diferentes fuentes de datos.
-                        │   │   │   ├── AuthRepository.tsx                              # A. Lógica para la autenticación.
-                        │   │   │   └── UserLocalRepository.tsx                         # A. Gestión de datos del usuario a nivel local (AsyncStorage).
-                        │   │   └── sources/                                            # C. Implementaciones concretas de las fuentes de datos (local, remota).
-                        │   │       ├── local/                                          # C. Lógica para acceder a datos almacenados localmente.
-                        │   │       │   └── LocalStorage.tsx                            # A. Interactua con el almacenamiento local (AsyncStorage).
-                        │   │       └── remote/                                         # C. Interactua con la API del backend (clientes API).
-                        │   │           ├── api/                                        # C. Clientes o servicios para realizar llamadas a la API.
-                        │   │           │   └── ApiDelivery.tsx                         # A. Cliente para interactuar con la API relacionada con "delivery".
-                        │   │           └── models/                                     # C. Estructuras de datos que se reciben de la API.
-                        │   │               └── ResponseApiDelivery.tsx                 # A. Tipo de la respuesta de la API de "delivery".
-                        │   ├── domain/                                                 # C. Lógica de negocio y entidades del dominio (independiente).
-                        │   │   ├── entities/                                           # C. Estructuras de los objetos del negocio (User).
-                        │   │   │   └── User.tsx                                        # A. Entidad de usuario con sus propiedades (nombre, email).
-                        │   │   ├── repositories/                                       # C. Interfaces para acceder a los datos (implementado en Data).
-                        │   │   │   ├── AuthRepository.tsx                              # A. Interfaz para las operaciones de autenticación.
-                        │   │   │   └── UserLocalRepository.tsx                         # A. Interfaz para la gestión de datos locales del usuario.
-                        │   │   └── useCases/                                           # C. Lógica de negocio específica de la aplicación (dominio/data).
-                        │   │       ├── auth/                                           # C. Casos de uso relacionados con la autenticación (Login, Register).
-                        │   │       │   ├── LoginAuth.tsx                               # A. Lógica para el proceso de inicio de sesión del usuario.
-                        │   │       │   └── RegisterAuth.tsx                            # A. Lógica para el proceso de registro de nuevos usuarios.
-                        │   │       └── userLocal/                                      # C. Casos de uso relacionados con la gestión local del usuario.
-                        │   │           ├── GetUserLocal.tsx                            # A. Obtener información del usuario almacenado localmente.
-                        │   │           ├── RemoveUserLocal.tsx                         # A. Eliminar información del usuario almacenado localmente.
-                        │   │           └── SaveUserLocal.tsx                           # A. Guardar la información del usuario localmente.
-                        │   └── presentation/                                           # C. Capa de la interfaz y presentación de datos (components, views).
-                        │       ├── components/                                         # C. Componentes de interfaz de usuario (inputs, buttons).
-                        │       │   ├── CustomTextInput.tsx                             # A. Componente de entrada de texto personalizado con estilos.
-                        │       │   └── RoundedButton.tsx                               # A. Componente de botón con estilos de bordes redondeados.
-                        │       ├── hooks/                                              # C. Hooks personalizados para lógica de presentación reutilizable.
-                        │       │   └── useUserLocal.tsx                                # A. Hook personalizado para manipular la información local del usuario.
-                        │       ├── theme/                                              # C. Estilos y la temática visual general de la aplicación.
-                        │       │   └── AppTheme.tsx                                    # A. Paleta de colores, tipografía y estilos consistentes.
-                        │       └── views/                                              # C. Pantallas o vistas principales de la aplicación.
-                        │           ├── home/                                           # C. Archivos relacionados con la pantalla principal de la aplicación.
-                        │           │   ├── Home.tsx                                    # A. Componente principal de la pantalla inicio (Home).
-                        │           │   ├── Styles.tsx                                  # A. Estilos específicos para los componentes de la pantalla inicio.
-                        │           │   └── ViewModel.tsx                               # A. Lógica de presentación para la pantalla inicio.
-                        │           ├── profile/                                        # C. Archivos relacionados con la pantalla de perfil del usuario.
-                        │           │   └── info/                                       # C. Archivos relacionados con la información del perfil del usuario.
-                        │           │       ├── ProfileInfo.tsx                         # A. Componente para mostrar la información del perfil del usuario.
-                        │           │       └── ViewModel.tsx                           # A. Lógica de presentación para la información del perfil del usuario.
-                        │           └── register/                                       # C. Archivos relacionados con la pantalla de registro de usuarios.
-                        │               ├── Register.tsx                                # A. Componente principal de la pantalla de registro de usuarios.
-                        │               ├── Styles.tsx                                  # A. Estilos específicos para los componentes de la pantalla de registro.
-                        │               └── ViewModel.tsx                               # A. Lógica de presentación para la pantalla de registro de usuarios.
-        (NO CREAR)      ├── .gitignore                                                  # A. Archivos y carpetas que Git debe ignorar (node_modules, etc.).
-        (NO CREAR)      ├── app.json                                                    # A. Configuración utilizada por Expo para configurar la app.
-        (NO CREAR)      ├── App.tsx                                                     # A. Raíz de la aplicación React Native (punto de entrada UI).
-        (NO CREAR)      ├── index.ts                                                    # A. Punto de entrada para la aplicación React Native (fuera de Expo).
-        (NO CREAR)      ├── package-lock.json                                           # A. Registra las versiones exactas de las dependencias del frontend_web.
-        (NO CREAR)      ├── package.json                                                # A. Manifiesto del proyecto frontend_web (nombre, dependencias, scripts).
-        (NO CREAR)      └── tsconfig.json                                               # A. Configuración para el compilador de TypeScript.
+                    proyecto/                                                           # C. Raíz del proyecto React.
+                    └── frontend_web/                                                   # C. Carpeta raíz del proyecto en React Native.
+        (NO CREAR)      ├── public/                                                     # C. Recursos estáticos
+                        │   ├── index.html                                              # A. Punto de entrada HTML
+        (NO CREAR)      │   ├── vite.svg                                                # A. Ícono de la aplicación
+                        │   └── assets/                                                 # C. Recursos estáticos
+                        │       └── images/                                             # A. imágenes
+                        ├── src/                                                        # C. Código fuente de la aplicación
+                        │   ├── components/                                             # C. Componentes de interfaz de usuario
+                        │   │   ├── ui/                                                 # C. Componentes de UI reutilizables
+                        │   │   │   ├── inputs/                                         # C. Componentes de entrada de datos
+                        │   │   │   │   ├── CustomInput.jsx                             # A. Input personalizado con estilos
+                        │   │   │   │   └── CustomInput.css                             # A. Estilos del input
+                        │   │   │   ├── buttons/                                        # C. Componentes de botón
+                        │   │   │   │   ├── RoundButton.jsx                             # A. Botón con bordes redondos
+                        │   │   │   │   └── RoundButton.css                             # A. Estilos del botón
+                        │   │   │   └── common/                                         # C. Componentes comunes
+                        │   │   │       └── CustomNode.jsx                              # A. Lógica de presentación reutilizable
+                        │   │   └── layout/                                             # C. Componentes de diseño
+                        │   │       ├── Header.jsx                                      # A. Encabezado de la aplicación
+                        │   │       └── Footer.jsx                                      # A. Pie de página
+                        │   ├── views/                                                  # C. Pantallas principales de la aplicación
+                        │   │   ├── home/                                               # C. Pantalla principal
+                        │   │   │   ├── Home.jsx                                        # A. Componente principal de inicio
+                        │   │   │   ├── Home.css                                        # C. Estilos específicos para Home
+                        │   │   │   └── hooks/                                          # C. Lógica de presentación reutilizable
+                        │   │   │       └── useHomeLogic.js                             # A. Lógica de presentación para Home
+                        │   │   ├── profile/                                            # C. Pantalla de perfil
+                        │   │   │   ├── Profile.jsx                                     # A. Pantalla de perfil del usuario
+                        │   │   │   ├── Profile.css                                     # A. Estilos del perfil
+                        │   │   │   └── components/                                     # C. Componentes perfil
+                        │   │   │       └── ProfileInfo.jsx                             # A. Componente para mostrar info del perfil
+                        │   │   └── register/                                           # C. Pantalla de registro
+                        │   │       ├── Register.jsx                                    # A. Pantalla de registro de usuarios
+                        │   │       ├── Register.css                                    # A. Estilos del registro
+                        │   │       └── hooks/                                          # C. Lógica de presentación reutilizable
+                        │   │           └── useRegisterLogic.js                         # A. Lógica para el proceso de registro
+                        │   ├── domain/                                                 # C. Lógica de negocio específica                                                
+                        │   │   ├── data/                                               # C. Estructuras y casos de uso
+                        │   │   │   ├── useCases/                                       # C. Casos de uso de la aplicación
+                        │   │   │   │   ├── auth/                                       # C. Casos de uso de autorización
+                        │   │   │   │   │   ├── loginUser.js                            # A. Lógica para inicio de sesión
+                        │   │   │   │   │   └── registerUser.js                         # A. Lógica para registro de usuarios
+                        │   │   │   │   └── user/                                       # C. Gestión local del usuario
+                        │   │   │   │       ├── getUserLocal.js                         # A. Obtener info del usuario local
+                        │   │   │   │       ├── saveUserLocal.js                        # A. Guardar info del usuario local
+                        │   │   │   │       └── deleteUserLocal.js                      # A. Eliminar info del usuario local
+                        │   │   │   └── entities/                                       # C. Estructuras de datos del negocio
+                        │   │   │       └── User.js                                     # A. Entidad usuario con propiedades
+                        │   │   └── interfaces/                                         # C. Interfaces para acceso a datos
+                        │   │       ├── authRepository.js                               # A. Interfaz para operaciones de autenticación
+                        │   │       └── userLocalRepository.js                          # A. Interfaz para gestión de datos locales
+                        │   ├── data/                                                   # C. Capa para obtención y manipulación de datos
+                        │   │   ├── repositories/                                       # C. Implementaciones concretas de fuentes de datos
+                        │   │   │   ├── AuthRepositoryImpl.js                           # A. Implementación de autenticación
+                        │   │   │   ├── UserLocalRepositoryImpl.js                      # A. Implementación de almacenamiento local
+                        │   │   │   └── api/                                            # C. Clientes para llamadas a la API
+                        │   │   │       ├── delivery/                                   # C. API específica de delivery
+                        │   │   │       │   ├── deliveryClient.js                       # A. Cliente para API de delivery
+                        │   │   │       │   └── types/                                  # C. Tipos de datos de la API
+                        │   │   │       │       └── deliveryResponse.js                 # A. Estructuras de datos de la API
+                        │   │   │       └── apiClient.js                                # A. Cliente base para llamadas API
+                        │   │   └── sources/                                            # C. Fuentes de datos
+                        │   │       ├── local/                                          # C. Acceso a datos locales
+                        │   │       │   └── localStorage.js                             # A. Interactúa con almacenamiento local
+                        │   │       └── remote/                                         # C. Acceso a datos remotos
+                        │   │           └── apiSource.js                                # A. Interactúa con API del backend
+                        │   ├── styles/                                                 # C. Estilos y tema visual
+                        │   │   ├── colors.js                                           # A. Paletas de colores
+                        │   │   ├── typography.js                                       # A. Tipografía y fuentes
+                        │   │   ├── theme.js                                            # A. Tema visual general
+                        │   │   └── global.css                                          # A. Estilos globales de la aplicación
+                        │   ├── utils/                                                  # C. Utilidades generales
+                        │   │   ├── storage.js                                          # A. Utilidades para almacenamiento - AsyncStorage
+                        │   │   └── constants.js                                        # A. Constantes de la aplicación
+                        │   ├── App.jsx                                                 # A. Componente raíz de la aplicación React
+                        │   ├── App.css                                                 # A. Estilos del componente App
+                        │   └── main.jsx                                                # A. Punto de entrada - configura React Router
+                        ├── package.json                                                # A. Configuración del proyecto - dependencias, scripts
+                        ├── package-lock.json                                           # A. Versiones exactas de dependencias
+                        ├── vite.config.js (o webpack.config.js)                        # A. Configuración del compilador/bundler
+                        └── README.md                                                   # A. Documentación del proyecto
 
                 ┌ --------------------------------------------------------------------------------------------------------------------------------------- ┐
                 |                                                                                                                                         |
                   NOTA:   
                     
-                    ⦿  Descargar de https://github.com/ProfeAlbeiro/06_software_mobil/tree/main/02_hibrido/react_native/resources/assets las imágenes 
-                        del proyecto, en la carpeta 'assets' del 'proyecto/frontend_web'.
+                    ⦿  Descargar de https://github.com/ProfeAlbeiro/05_software_frontend/tree/main/react/assets las imágenes del proyecto, en la 
+                        carpeta 'assets/images' del 'proyecto/frontend_web'.
                 |                                                                                                                                         |
                 └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
 
