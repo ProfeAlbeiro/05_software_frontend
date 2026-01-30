@@ -1,0 +1,1079 @@
+________________________________________________________________________________________________
+
+                                    📋 ÍNDICE PROYECTO 
+                                  REACT - VITE - TYPESCRIPT
+________________________________________________________________________________________________
+
+✅ FASE 1: CONFIGURACIÓN INICIAL
+    ✅ Preparar Entorno de Desarrollo
+    ✅ Iniciar Proyecto con Vite + React + TypeScript
+    ✅ Estructura de Carpetas y Archivos
+        
+✅FASE 2: CONFIGURACIONES TÉCNICAS
+    ✅ Instalar Todas las Dependencias
+    ✅ Configurar Versiones Específicas
+    ✅ Configurar Alias de Rutas
+    ✅ Configurar Tipos Globales TypeScript
+    ✅ Configurar ESLint + Prettier
+    ✅ Configurar Variables de Entorno
+
+✅ FASE 3: CÓDIGO BASE
+    ✅ Crear App.tsx y Router Principal
+    ✅ Configurar Estilos Globales y Tema
+
+🔄 FASE 4: AUTENTICACIÓN
+    ✅ Código de Entidades y Repositorios
+        ✅ src/domain/entities/User.ts - Entidades y tipos
+        ✅ src/domain/repositories/AuthRepository.ts - Interfaces e implementación
+        ✅ src/domain/repositories/UserLocalRepository.ts - Almacenamiento local
+        ✅ src/data/sources/remote/api/ApiDelivery.ts - Cliente HTTP
+        ✅ src/data/sources/remote/models/ResponseApiDelivery.ts
+        ✅ src/data/repositories/AuthRepository.ts
+    🔄 Código de Casos de Uso
+        🔄 Código de Components y Hooks
+        🔄 Código de Vistas (Login/Register)
+
+🔄 FASE 5: UTILIDADES Y CONSTANTES
+    🔄 Estructura utils/
+    🔄 constants/ - App, API, Storage, Validation
+    🔄 helpers/ - Formatters, Validators, HTTP
+    🔄 hooks/ - useLocalStorage
+
+🔄 FASE 6: DASHBOARD Y USUARIOS
+    🔄 Código de Dashboard
+    🔄 Módulo de Gestión de Usuarios
+
+🔄 FASE 7: SEGURIDAD
+    🔄 Implementación JWT
+    🔄 Protección de Rutas
+
+
+
+________________________________________________________________________________________________
+✅ FASE 1: CONFIGURACIÓN INICIAL 
+________________________________________________________________________________________________
+    ✅ Estructura de Carpetas y Archivos
+
+          proyecto/                                                   # C.
+          └── frontend_web/                                           # C.
+              ├── public/                                             # C.
+              │   ├── favicon.ico                                     # A.
+              │   ├── manifest.json                                   # A.
+              │   ├── robots.txt                                      # A.
+              │   ├── social-image.png                                # A.
+              │   └── vite.svg                                        # A.
+              ├── src/                                                # C.
+              │   ├── assets/                                         # C.
+              │   │   ├── fonts/                                      # C.
+              │   │   │   └── README.md                               # A.
+              │   │   ├── icons/                                      # C.
+              │   │   │   └── svg/                                    # C.
+              │   │   │       ├── home-icon.svg                       # A.
+              │   │   │       ├── settings-icon.svg                   # A.
+              │   │   │       └── user-icon.svg                       # A.
+              │   │   ├── images/                                     # C.
+              │   │   │   ├── backgrounds/                            # C.
+              │   │   │   │   └── auth-bg.jpg                         # A.
+              │   │   │   ├── icons/                                  # C.
+              │   │   │   │   └── default-user.jpg                    # A.
+              │   │   │   └── logos/                                  # C.
+              │   │   │       └── app-logo.jpg                        # A.
+              │   │   └── react.svg                                   # A.
+              │   ├── data/                                           # C. Capa para obtención y manipulación de datos.
+              │   │   ├── repositories/                               # C. Interfaces para acceder a diferentes fuentes de datos.
+              │   │   │   ├── AuthRepository.ts                       # A. Lógica para la autenticación.
+              │   │   │   └── UserLocalRepository.ts                  # A. Gestión de datos del usuario a nivel local (localStorage).
+              │   │   └── sources/                                    # C. Implementaciones concretas de las fuentes de datos.
+              │   │       ├── local/                                  # C. Lógica para acceder a datos almacenados localmente.
+              │   │       │   └── LocalStorage.ts                     # A. Interactúa con el almacenamiento local (localStorage).
+              │   │       └── remote/                                 # C. Interactúa con la API del backend.
+              │   │           ├── api/                                # C. Clientes o servicios para realizar llamadas a la API.
+              │   │           │   └── ApiDelivery.ts                  # A. Cliente para interactuar con la API relacionada con "delivery".
+              │   │           └── models/                             # C. Estructuras de datos que se reciben de la API.
+              │   │               └── ResponseApiDelivery.ts          # A. Tipo de la respuesta de la API de "delivery".
+              │   ├── domain/                                         # C. Lógica de negocio y entidades del dominio.
+              │   │   ├── entities/                                   # C. Estructuras de los objetos del negocio.
+              │   │   │   └── User.ts                                 # A. Entidad de usuario con sus propiedades.
+              │   │   ├── repositories/                               # C. Interfaces para acceder a los datos.
+              │   │   │   ├── AuthRepository.ts                       # A. Interfaz para las operaciones de autenticación.
+              │   │   │   └── UserLocalRepository.ts                  # A. Interfaz para la gestión de datos locales del usuario.
+              │   │   └── useCases/                                   # C. Lógica de negocio específica.
+              │   │       ├── auth/                                   # C. Casos de uso relacionados con la autenticación.
+              │   │       │   ├── LoginAuth.ts                        # A. Lógica para el proceso de inicio de sesión.
+              │   │       │   └── RegisterAuth.ts                     # A. Lógica para el proceso de registro.
+              │   │       └── userLocal/                              # C. Casos de uso relacionados con la gestión local.
+              │   │           ├── GetUserLocal.ts                     # A. Obtener información del usuario almacenado localmente.
+              │   │           ├── RemoveUserLocal.ts                  # A. Eliminar información del usuario almacenado localmente.
+              │   │           └── SaveUserLocal.ts                    # A. Guardar la información del usuario localmente.
+              │   ├── presentation/                                   # C. Capa de la interfaz y presentación de datos.
+              │   │   ├── components/                                 # C. Componentes de interfaz de usuario.
+              │   │   │   ├── CustomTextInput.tsx                     # A. Componente de entrada de texto personalizado.
+              │   │   │   └── RoundedButton.tsx                       # A. Componente de botón con bordes redondeados.
+              │   │   ├── hooks/                                      # C. Hooks personalizados.
+              │   │   │   └── useUserLocal.ts                         # A. Hook para manipular la información local del usuario.
+              │   │   ├── theme/                                      # C. Estilos y temática visual.
+              │   │   │   └── AppTheme.ts                             # A. Paleta de colores, tipografía y estilos.
+              │   │   └── views/                                      # C. Pantallas o vistas principales.
+              │   │       ├── home/                                   # C. Archivos de la pantalla principal.
+              │   │       │   ├── Home.tsx                            # A. Componente principal de Home.
+              │   │       │   ├── Styles.scss                         # A. Estilos específicos para Home.
+              │   │       │   └── ViewModel.ts                        # A. Lógica de presentación para Home.
+              │   │       ├── profile/                                # C. Archivos de la pantalla de perfil.
+              │   │       │   └── info/                               # C. Archivos de información del perfil.
+              │   │       │       ├── ProfileInfo.tsx                 # A. Componente para mostrar información del perfil.
+              │   │       │       └── ViewModel.ts                    # A. Lógica de presentación para el perfil.
+              │   │       └── register/                               # C. Archivos de la pantalla de registro.
+              │   │           ├── Register.tsx                        # A. Componente principal de registro.
+              │   │           ├── Styles.scss                         # A. Estilos específicos para registro.
+              │   │           └── ViewModel.ts                        # A. Lógica de presentación para registro.
+              │   ├── types/                                          # C.
+              │   │   └── global.d.ts                                 # A.
+              │   ├── utils/                                          # C.
+              │   │   ├── constants/                                  # C.
+              │   │   │   ├── api.ts                                  # A.
+              │   │   │   ├── app.ts                                  # A.
+              │   │   │   ├── storage.ts                              # A.
+              │   │   │   └── validation.ts                           # A.
+              │   │   ├── helpers/                                    # C.
+              │   │   │   ├── formatters.ts                           # A.
+              │   │   │   ├── http.ts                                 # A.
+              │   │   │   └── validators.ts                           # A.
+              │   │   └── hooks/                                      # C.
+              │   │   │   └── useLocalStorage.ts                      # A.
+              │   ├── App.css                                         # A.
+              │   ├── App.tsx                                         # A. Raíz de la aplicación React.
+              │   ├── index.css                                       # A.
+              │   ├── main.tsx                                        # A. Punto de entrada de la aplicación.
+              │   └── vite-env.d.ts                                   # A. Tipos de Vite.
+              ├── .env                                                # A.
+              ├── .env.development                                    # A.
+              ├── .env.example                                        # A.
+              ├── .env.local                                          # A.
+              ├── .env.production                                     # A.
+              ├── .gitignore                                          # A.
+              ├── .prettierrc                                         # A.
+              ├── eslint.config.js                                    # A.
+              ├── index.html                                          # A.
+              ├── package-lock.json                                   # A.
+              ├── package.json                                        # A. Manifiesto del proyecto.
+              ├── README.md                                           # A.
+              ├── tsconfig.app.json                                   # A.
+              ├── tsconfig.json                                       # A. Configuración de TypeScript.
+              ├── tsconfig.node.json                                  # A.
+              └── vite.config.ts                                      # A. Configuración de Vite.
+
+    NOTA: Ver script de creación automática de carpetas y archivos (PowerShell, Bash, JS)
+
+________________________________________________________________________________________________
+✅FASE 2: CONFIGURACIONES TÉCNICAS
+________________________________________________________________________________________________
+    ✅ Configurar Versiones Específicas
+
+        # Reemplaza el contenido de tu package.json con este:
+
+              {
+                "name": "frontend_web",
+                "private": true,
+                "version": "0.0.0",
+                "type": "module",
+                "scripts": {
+                  "dev": "vite",
+                  "build": "tsc -b && vite build",
+                  "lint": "eslint .",
+                  "preview": "vite preview"
+                },
+                "dependencies": {
+                  "react": "^19.2.0",
+                  "react-dom": "^19.2.0"
+                },
+                "devDependencies": {
+                  "@eslint/js": "^9.39.1",
+                  "@types/node": "^24.10.0",
+                  "@types/react": "^19.2.2",
+                  "@types/react-dom": "^19.2.2",
+                  "@vitejs/plugin-react": "^5.1.0",
+                  "eslint": "^9.39.1",
+                  "eslint-plugin-react-hooks": "^7.0.1",
+                  "eslint-plugin-react-refresh": "^0.4.24",
+                  "globals": "^16.5.0",
+                  "typescript": "~5.9.3",
+                  "typescript-eslint": "^8.46.3",
+                  "vite": "^7.2.2"
+                }
+              }
+
+        # Ejecuta en la terminal desde la carpeta frontend_web:
+              npm install
+
+        # Verifica que las versiones sean correctas:
+              npm list react vite typescript
+
+________________________________________________________________________________________________
+    ✅ Instalar Todas las Dependencias
+
+        # Producción
+              npm install react-router-dom axios lodash dayjs zustand react-hook-form yup 
+              @hookform/resolvers
+
+        # Desarrollo
+              npm install -D @types/node @types/lodash eslint @typescript-eslint/eslint-plugin 
+              @typescript-eslint/parser eslint-plugin-react-hooks eslint-plugin-react-refresh 
+              prettier eslint-config-prettier eslint-plugin-prettier @eslint/js globals 
+              typescript-eslint
+
+    NOTA: Ajustar las dependencias para que queden en una sola línea
+
+        # Verificar instalación
+              npm list --depth=0
+
+
+________________________________________________________________________________________________
+    ✅ Configurar Alias de Rutas
+
+        # Modificar vite.config.ts
+
+              import { defineConfig } from 'vite'
+              import react from '@vitejs/plugin-react'
+              import { resolve } from 'path'
+
+              export default defineConfig({
+                plugins: [react()],
+                resolve: {
+                  alias: {
+                    // Rutas absolutas desde src
+                    '@': resolve(__dirname, 'src'),
+                    '@assets': resolve(__dirname, 'src/assets'),
+                    '@data': resolve(__dirname, 'src/data'),
+                    '@domain': resolve(__dirname, 'src/domain'),
+                    '@presentation': resolve(__dirname, 'src/presentation'),
+                    '@components': resolve(__dirname, 'src/presentation/components'),
+                    '@hooks': resolve(__dirname, 'src/presentation/hooks'),
+                    '@views': resolve(__dirname, 'src/presentation/views'),
+                    '@theme': resolve(__dirname, 'src/presentation/theme')
+                  }
+                },
+                server: {
+                  port: 3000,
+                  open: true
+                }
+              })
+
+        # Modificar tsconfig.node.json
+
+              {
+                "compilerOptions": {
+                  "composite": true,
+                  "skipLibCheck": true,
+                  "module": "ESNext",
+                  "moduleResolution": "bundler",
+                  "allowSyntheticDefaultImports": true
+                },
+                "include": ["vite.config.ts"]
+              }
+
+        # Modificar tsconfig.json
+
+              {
+                "compilerOptions": {
+                  "target": "ES2020",
+                  "useDefineForClassFields": true,
+                  "lib": ["ES2020", "DOM", "DOM.Iterable"],
+                  "module": "ESNext",
+                  "skipLibCheck": true,
+                  "moduleResolution": "bundler",
+                  "allowImportingTsExtensions": true,
+                  "resolveJsonModule": true,
+                  "isolatedModules": true,
+                  "noEmit": true,
+                  "jsx": "react-jsx",
+                  "strict": true,
+                  "noUnusedLocals": true,
+                  "noUnusedParameters": true,
+                  "noFallthroughCasesInSwitch": true,
+                  
+                  // Configuración de alias SIN baseUrl (usando solo paths)
+                  "paths": {
+                    "@/*": ["./src/*"],
+                    "@data/*": ["./src/data/*"],
+                    "@domain/*": ["./src/domain/*"],
+                    "@presentation/*": ["./src/presentation/*"],
+                    "@components/*": ["./src/presentation/components/*"],
+                    "@hooks/*": ["./src/presentation/hooks/*"],
+                    "@views/*": ["./src/presentation/views/*"],
+                    "@theme/*": ["./src/presentation/theme/*"]
+                  }
+                },
+                "include": ["src"],
+                "references": [{ "path": "./tsconfig.node.json" }]
+              }
+
+        # Verificar ejecutando el proyecto
+              npm run dev
+
+________________________________________________________________________________________________
+    ✅ Configurar Tipos Globales TypeScript
+
+        # Codificar src/types/global.d.ts
+
+              declare module '*.css' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.scss' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.svg' {
+                import { FC, SVGProps } from 'react';
+                export const ReactComponent: FC<SVGProps<SVGSVGElement>>;
+                const src: string;
+                export default src;
+              }
+
+              declare module '*.png' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.jpg' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.jpeg' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.gif' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.webp' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.ico' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.woff' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.woff2' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.ttf' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.eot' {
+                const content: string;
+                export default content;
+              }
+
+              declare module '*.json' {
+                const content: unknown;
+                export default content;
+              }
+
+              interface ImportMetaEnv {
+                readonly VITE_API_URL: string;
+                readonly VITE_APP_NAME: string;
+                readonly VITE_APP_VERSION: string;
+              }
+
+              interface ImportMeta {
+                readonly env: ImportMetaEnv;
+              }
+
+________________________________________________________________________________________________    
+    ✅ Configurar ESLint + Prettier
+
+        # Modificar eslint.config.js
+
+              import js from '@eslint/js'
+              import globals from 'globals'
+              import reactHooks from 'eslint-plugin-react-hooks'
+              import reactRefresh from 'eslint-plugin-react-refresh'
+              import tseslint from 'typescript-eslint'
+              import { defineConfig, globalIgnores } from 'eslint/config'
+
+              export default defineConfig([
+                globalIgnores(['dist', 'node_modules']),
+                {
+                  files: ['**/*.{ts,tsx}'],
+                  extends: [
+                    js.configs.recommended,
+                    tseslint.configs.recommended,
+                    reactHooks.configs.flat.recommended,
+                    reactRefresh.configs.vite,
+                  ],
+                  languageOptions: {
+                    ecmaVersion: 2020,
+                    globals: globals.browser,
+                  },
+                  rules: {
+                    '@typescript-eslint/no-unused-vars': 'error',
+                    '@typescript-eslint/no-explicit-any': 'warn',
+                    'react-refresh/only-export-components': [
+                      'warn',
+                      { allowConstantExport: true },
+                    ],
+                  },
+                },
+              ])
+
+        # Codificar .prettierrc
+
+              {
+                "semi": true,
+                "singleQuote": true,
+                "tabWidth": 2,
+                "trailingComma": "es5",
+                "printWidth": 80,
+                "endOfLine": "auto",
+                "bracketSpacing": true,
+                "bracketSameLine": false,
+                "arrowParens": "avoid"
+              }
+
+
+        # Modificar package.json
+
+              {
+                "name": "frontend_web",
+                "private": true,
+                "version": "0.0.0",
+                "type": "module",
+                "scripts": {
+                  "dev": "vite",
+                  "build": "tsc -b && vite build",
+                  "preview": "vite preview",
+                  "lint": "eslint . --ext .ts,.tsx --fix",
+                  "format": "prettier --write \"src/**/*.{ts,tsx,json,css,scss}\"",
+                  "type-check": "tsc --noEmit",
+                  "build:prod": "npm run lint && npm run type-check && vite build"
+                },
+                "dependencies": {
+                  "@hookform/resolvers": "^5.2.2",
+                  "axios": "^1.13.2",
+                  "dayjs": "^1.11.19",
+                  "lodash": "^4.17.21",
+                  "react": "^19.2.0",
+                  "react-dom": "^19.2.0",
+                  "react-hook-form": "^7.66.1",
+                  "react-router-dom": "^7.9.6",
+                  "yup": "^1.7.1",
+                  "zustand": "^5.0.8"
+                },
+                "devDependencies": {
+                  "@eslint/js": "^9.39.1",
+                  "@types/lodash": "^4.17.20",
+                  "@types/node": "^24.10.1",
+                  "@types/react": "^19.2.2",
+                  "@types/react-dom": "^19.2.2",
+                  "@typescript-eslint/eslint-plugin": "^8.47.0",
+                  "@typescript-eslint/parser": "^8.47.0",
+                  "@vitejs/plugin-react": "^5.1.0",
+                  "eslint": "^9.39.1",
+                  "eslint-config-prettier": "^10.1.8",
+                  "eslint-plugin-prettier": "^5.5.4",
+                  "eslint-plugin-react-hooks": "^7.0.1",
+                  "eslint-plugin-react-refresh": "^0.4.24",
+                  "globals": "^16.5.0",
+                  "prettier": "^3.6.2",
+                  "typescript": "~5.9.3",
+                  "typescript-eslint": "^8.47.0",
+                  "vite": "^7.2.2"
+                }
+              }
+
+        # Actualizar dependencias
+              npm install
+
+        # Probar ESLint (nueva sintaxis)
+              npm run lint
+
+        # Probar Prettier
+              npm run format
+
+        # Verificar TypeScript
+              npm run type-check
+
+________________________________________________________________________________________________    
+    ✅ Configurar Variables de Entorno
+
+        # Codificar .env
+
+              VITE_API_URL=http://localhost:3000/api
+              VITE_APP_NAME=Frontend Web App (Dev)
+              VITE_APP_VERSION=1.0.0
+
+        # Codificar .env.development
+
+              VITE_API_URL=http://localhost:3000/api
+              VITE_APP_NAME=Frontend Web App (Dev)
+              VITE_APP_VERSION=1.0.0
+        
+        # Codificar .env.example
+
+              VITE_API_URL=your_api_url_here
+              VITE_APP_NAME=your_app_name
+              VITE_APP_VERSION=1.0.0
+
+        # Codificar .env.production
+
+              VITE_API_URL=https://api.midominio.com
+              VITE_APP_NAME=Frontend Web App (build)
+              VITE_APP_VERSION=1.0.0
+
+
+        # Agregar a .gitignore
+
+              # Variables de entorno
+              .env
+              .env.*
+              !.env.example
+
+        # Modificar src/App.tsx
+
+              import { useState } from 'react'
+              import reactLogo from './assets/react.svg'
+              import viteLogo from '/vite.svg'
+              import './App.css'
+
+              function App() {
+                const [count, setCount] = useState(0)
+
+                // Mostrar variables de entorno en consola
+                console.log('🔧 Variables de entorno:');
+                console.log('API URL:', import.meta.env.VITE_API_URL);
+                console.log('App Name:', import.meta.env.VITE_APP_NAME);
+                console.log('App Version:', import.meta.env.VITE_APP_VERSION);
+
+                return (
+                  <>
+                    <div>
+                      <a href="https://vitejs.dev" target="_blank">
+                        <img src={viteLogo} className="logo" alt="Vite logo" />
+                      </a>
+                      <a href="https://react.dev" target="_blank">
+                        <img src={reactLogo} className="logo react" alt="React logo" />
+                      </a>
+                    </div>
+                    <h1>{import.meta.env.VITE_APP_NAME} v{import.meta.env.VITE_APP_VERSION}</h1>
+                    <div className="card">
+                      <button onClick={() => setCount((count) => count + 1)}>
+                        count is {count}
+                      </button>
+                      <p>
+                        Edit <code>src/App.tsx</code> and save to test HMR
+                      </p>
+                    </div>
+                    <p className="read-the-docs">
+                      Click on the Vite and React logos to learn more
+                    </p>
+                  </>
+                )
+              }
+
+              export default App
+
+        # Verificar funcionamiento
+              npm run dev
+
+        NOTA: Parar crear .env a partir de la plantilla:
+              cp .env.example .env
+
+
+________________________________________________________________________________________________    
+✅ FASE 3: CÓDIGO BASE
+________________________________________________________________________________________________    
+    ✅ Crear App.tsx y Router Principal
+
+        # Codificar src/presentation/theme/AppTheme.ts
+
+              export const AppTheme = {
+                colors: {
+                  primary: '#2563eb',
+                  secondary: '#64748b',
+                  success: '#22c55e',
+                  warning: '#f59e0b',
+                  error: '#ef4444',
+                  background: '#ffffff',
+                  text: '#1f2937',
+                },
+                spacing: {
+                  xs: '4px',
+                  sm: '8px',
+                  md: '16px',
+                  lg: '24px',
+                  xl: '32px',
+                },
+                borderRadius: {
+                  sm: '4px',
+                  md: '8px',
+                  lg: '12px',
+                }
+              };
+
+        # Modificar src/App.tsx
+        
+              import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+              import { AppTheme } from '@theme/AppTheme';
+
+              function App() {
+                return (
+                  <div style={{ 
+                    minHeight: '100vh',
+                    backgroundColor: AppTheme.colors.background,
+                    color: AppTheme.colors.text 
+                  }}>
+                    <Router>
+                      <Routes>
+                        <Route path="/" element={<Navigate to="/home" replace />} />
+                        <Route path="/home" element={
+                          <div style={{ padding: AppTheme.spacing.xl }}>
+                            <h1>Bienvenido a {import.meta.env.VITE_APP_NAME}</h1>
+                            <p>Versión: {import.meta.env.VITE_APP_VERSION}</p>
+                            <p>Esta es la página de inicio</p>
+                          </div>
+                        } />
+                        <Route path="/login" element={
+                          <div style={{ padding: AppTheme.spacing.xl }}>
+                            <h1>Página de Login</h1>
+                            <p>Próximamente...</p>
+                          </div>
+                        } />
+                        <Route path="/register" element={
+                          <div style={{ padding: AppTheme.spacing.xl }}>
+                            <h1>Página de Registro</h1>
+                            <p>Próximamente...</p>
+                          </div>
+                        } />
+                        <Route path="*" element={
+                          <div style={{ padding: AppTheme.spacing.xl, textAlign: 'center' }}>
+                            <h1>404 - Página no encontrada</h1>
+                          </div>
+                        } />
+                      </Routes>
+                    </Router>
+                  </div>
+                );
+              }
+
+              export default App;
+
+        # Verificar funcionamiento
+              npm run dev
+
+
+________________________________________________________________________________________________        
+    ✅ Configurar Estilos Globales y Tema
+
+        # Codificar src/index.css (Estilos globales)
+
+              /* Reset y estilos base */
+              * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+
+              html, body {
+                height: 100%;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                  sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                background-color: #f8fafc;
+                color: #1f2937;
+              }
+
+              #root {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+              }
+
+              /* Utilidades globales */
+              .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 16px;
+              }
+
+              .text-center {
+                text-align: center;
+              }
+
+              .flex {
+                display: flex;
+              }
+
+              .flex-col {
+                flex-direction: column;
+              }
+
+              .items-center {
+                align-items: center;
+              }
+
+              .justify-center {
+                justify-content: center;
+              }
+
+              .gap-2 {
+                gap: 8px;
+              }
+
+              .gap-4 {
+                gap: 16px;
+              }
+
+              /* Estados de carga y errores */
+              .loading {
+                opacity: 0.6;
+                pointer-events: none;
+              }
+
+              .error {
+                color: #ef4444;
+                background-color: #fef2f2;
+                border: 1px solid #fecaca;
+                padding: 12px;
+                border-radius: 8px;
+              }
+
+              .success {
+                color: #22c55e;
+                background-color: #f0fdf4;
+                border: 1px solid #bbf7d0;
+                padding: 12px;
+                border-radius: 8px;
+              }        
+        
+        # Modificar src/main.tsx
+
+              import React from 'react'
+              import ReactDOM from 'react-dom/client'
+              import App from './App.tsx'
+              import './index.css'
+
+              ReactDOM.createRoot(document.getElementById('root')!).render(
+                <React.StrictMode>
+                  <App />
+                </React.StrictMode>,
+              )        
+        
+        # Modificar src/App.tsx
+
+              import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+              function App() {
+                return (
+                  <div className="app-container">
+                    <Router>
+                      <Routes>
+                        <Route path="/" element={<Navigate to="/home" replace />} />
+                        <Route path="/home" element={
+                          <div className="container">
+                            <div className="text-center">
+                              <h1>Bienvenido a {import.meta.env.VITE_APP_NAME}</h1>
+                              <p>Versión: {import.meta.env.VITE_APP_VERSION}</p>
+                              <p>Esta es la página de inicio</p>
+                            </div>
+                          </div>
+                        } />
+                        <Route path="/login" element={
+                          <div className="container">
+                            <h1>Página de Login</h1>
+                            <p>Próximamente...</p>
+                          </div>
+                        } />
+                        <Route path="/register" element={
+                          <div className="container">
+                            <h1>Página de Registro</h1>
+                            <p>Próximamente...</p>
+                          </div>
+                        } />
+                        <Route path="*" element={
+                          <div className="container text-center">
+                            <h1>404 - Página no encontrada</h1>
+                          </div>
+                        } />
+                      </Routes>
+                    </Router>
+                  </div>
+                );
+              }
+
+              export default App;
+
+        # Verificar funcionamiento
+              npm run dev
+
+
+________________________________________________________________________________________________
+🔄 FASE 4: AUTENTICACIÓN
+________________________________________________________________________________________________
+    ✅ Código de Entidades y Repositorios
+
+        # Codificar src/domain/entities/User.ts
+
+              export interface User {
+                  id: string;
+                  name: string;
+                  email: string;
+                  password?: string;
+                  token?: string;
+                  createdAt?: Date;
+                  updatedAt?: Date;
+              }
+
+              export interface AuthResponse {
+                  success: boolean;
+                  message: string;
+                  user?: User;
+                  token?: string;
+              }
+
+              export interface LoginRequest {
+                  email: string;
+                  password: string;
+              }
+
+              export interface RegisterRequest {
+                  name: string;
+                  email: string;
+                  password: string;
+                  confirmPassword?: string;
+              }
+
+              export interface UserLocal {
+                  user: User;
+                  token: string;
+                  timestamp: number;
+              }
+
+        
+        # Codificar src/domain/repositories/AuthRepository.ts
+
+              import { User, AuthResponse, LoginRequest, RegisterRequest } from '../entities/User';
+
+              export interface AuthRepository {
+                  login(credentials: LoginRequest): Promise<AuthResponse>;
+                  register(userData: RegisterRequest): Promise<AuthResponse>;
+                  logout(): Promise<void>;
+                  getCurrentUser(): Promise<User | null>;
+                  validateToken(token: string): Promise<boolean>;
+              }        
+        
+        # Codificar src/domain/repositories/UserLocalRepository.ts
+
+              import { UserLocal } from '../entities/User';
+
+              export interface UserLocalRepository {
+                  saveUser(userData: UserLocal): Promise<void>;
+                  getUser(): Promise<UserLocal | null>;
+                  removeUser(): Promise<void>;
+                  getToken(): Promise<string | null>;
+              }        
+        
+        # Codificar src/data/sources/remote/api/ApiDelivery.ts
+        
+              import axios from 'axios';
+
+              const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
+              export const apiDelivery = axios.create({
+                  baseURL: BASE_URL,
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  timeout: 10000,
+              });
+
+              // Interceptor para agregar token a las requests
+              apiDelivery.interceptors.request.use(
+                  (config) => {
+                      const token = localStorage.getItem('authToken');
+                      if (token) {
+                          config.headers.Authorization = `Bearer ${token}`;
+                      }
+                      return config;
+                  },
+                  (error) => {
+                      return Promise.reject(error);
+                  }
+              );
+
+              // Interceptor para manejar respuestas
+              apiDelivery.interceptors.response.use(
+                  (response) => response,
+                  (error) => {
+                      if (error.response?.status === 401) {
+                          localStorage.removeItem('authToken');
+                          window.location.href = '/login';
+                      }
+                      return Promise.reject(error);
+                  }
+              );
+
+              export default apiDelivery;
+
+        # Codificar src/data/sources/remote/models/ResponseApiDelivery.ts
+
+              export interface ResponseApiDelivery {
+                  success: boolean;
+                  message: string;
+                  data?: unknown;
+                  error?: string;
+              }
+
+              export interface AuthResponseApi {
+                  success: boolean;
+                  message: string;
+                  token?: string;
+                  user?: {
+                      id: string;
+                      name: string;
+                      email: string;
+                  };
+              }        
+        
+        # Codificar src/data/repositories/AuthRepository.ts
+
+              import { AuthRepository } from '@domain/repositories/AuthRepository';
+              import { User, AuthResponse, LoginRequest, RegisterRequest } from '@domain/entities/User';
+              import { apiDelivery } from '@data/sources/remote/api/ApiDelivery';
+              import { AuthResponseApi } from '@data/sources/remote/models/ResponseApiDelivery';
+
+              export class AuthRepositoryImpl implements AuthRepository {
+                  async login(credentials: LoginRequest): Promise<AuthResponse> {
+                      try {
+                          const response = await apiDelivery.post<AuthResponseApi>('/auth/login', credentials);
+                          
+                          if (response.data.success && response.data.token && response.data.user) {
+                              localStorage.setItem('authToken', response.data.token);
+                              
+                              return {
+                                  success: true,
+                                  message: response.data.message,
+                                  user: {
+                                      id: response.data.user.id,
+                                      name: response.data.user.name,
+                                      email: response.data.user.email
+                                  },
+                                  token: response.data.token
+                              };
+                          }
+                          
+                          return {
+                              success: false,
+                              message: response.data.message || 'Error en el login'
+                          };
+                      } catch (error: unknown) {
+                          const errorMessage = error instanceof Error ? error.message : 'Error de conexión';
+                          return {
+                              success: false,
+                              message: errorMessage
+                          };
+                      }
+                  }
+
+                  async register(userData: RegisterRequest): Promise<AuthResponse> {
+                      try {
+                          const response = await apiDelivery.post<AuthResponseApi>('/auth/register', userData);
+                          
+                          if (response.data.success && response.data.token && response.data.user) {
+                              localStorage.setItem('authToken', response.data.token);
+                              
+                              return {
+                                  success: true,
+                                  message: response.data.message,
+                                  user: {
+                                      id: response.data.user.id,
+                                      name: response.data.user.name,
+                                      email: response.data.user.email
+                                  },
+                                  token: response.data.token
+                              };
+                          }
+                          
+                          return {
+                              success: false,
+                              message: response.data.message || 'Error en el registro'
+                          };
+                      } catch (error: unknown) {
+                          const errorMessage = error instanceof Error ? error.message : 'Error de conexión';
+                          return {
+                              success: false,
+                              message: errorMessage
+                          };
+                      }
+                  }
+
+                  async logout(): Promise<void> {
+                      localStorage.removeItem('authToken');
+                      try {
+                          await apiDelivery.post('/auth/logout');
+                      } catch {
+                          // Ignorar errores en logout
+                      }
+                  }
+
+                  async getCurrentUser(): Promise<User | null> {
+                      try {
+                          const response = await apiDelivery.get<AuthResponseApi>('/auth/me');
+                          return response.data.user ? {
+                              id: response.data.user.id,
+                              name: response.data.user.name,
+                              email: response.data.user.email
+                          } : null;
+                      } catch {
+                          return null;
+                      }
+                  }
+
+                  async validateToken(token: string): Promise<boolean> {
+                      try {
+                          const response = await apiDelivery.post<{ valid: boolean }>('/auth/validate', { token });
+                          return response.data.valid;
+                      } catch {
+                          return false;
+                      }
+                  }
+              }
+
+        # Verificar que no hay errores
+              npm run type-check
+              npm run lint
+
+
+________________________________________________________________________________________________
+    🔄 Código de Casos de Uso
+
+
+
+
+________________________________________________________________________________________________
+    🔄 Código de Components y Hooks
+
+
+
+
+________________________________________________________________________________________________
+    🔄 Código de Vistas (Login/Register)
