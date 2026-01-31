@@ -1,0 +1,993 @@
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||---------------------------------------------------------------------- REACT_VITE_TYPESCRIPT -----------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||                                                                                                                                                                    |||
+||| --  01.  ENTORNO DE DESARROLLO                                                                                                                                     |||
+||| --  02.  ESTRUCTURA DEL PROYECTO                                                                                                                                   |||
+||| --  03.  CONFIGURACIÓN TÉCNICA                                                                                                                                     |||
+||| --  04.  CÓDIGO BASE                                                                                                                                               |||
+||| --  05.  VISTA DEL FORMULARIO DE REGISTRO                                                                                                                          |||
+||| --  06.  VISTA DEL FORMULARIO DE INICIO DE SESIÓN                                                                                                                  |||
+||| --  07.  API RESTFULL DE USUARIOS                                                                                                                                  |||
+||| --  08.  REGISTRAR UN USUARIO                                                                                                                                      |||
+||| --  09.  INICIAR SESIÓN                                                                                                                                            |||
+||| --  10.  CERRAR SESIÓN                                                                                                                                             |||
+|||                                                                                                                                                                    |||
+||| --  ANEXOS: TENER EN CUENTA                                                                                                                                        |||
+||| --          AX_01.  Instalar Git                                                                                                                                   |||
+||| --          AX_02.  Crear cuenta en 'Github'                                                                                                                       |||
+||| --          AX_03.  Subir el proyecto a un repositorio 'Github'                                                                                                    |||
+||| --          AX_04.  Clonar un proyecto 'Github'                                                                                                                    |||
+||| --          AX_05.  Puesta en marcha del proyecto                                                                                                                  |||
+|||                                                                                                                                                                    |||
+||| --  AUTOR:           ALBEIRO RAMOS, 2026.                                                                                                                          |||
+|||                                                                                                                                                                    |||
+||| --  BIBLIOGRAFÍA:                                                                                                                                                  |||
+|||                                                                                                                                                                    |||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||                                                                                                                                                                    |||
+||| --  01.  ENTORNO DE DESARROLLO                                                                                                                                     |||
+||| --       01.01.  Configuración Inicial                                                                                                                             |||
+||| --               --  Verificar Directivas en PowerShell                                                                                                            |||
+||| --               --  Instalar Node Js                                                                                                                              |||
+||| --               --  Instalar Visual Studio Code                                                                                                                   |||
+||| --       01.02.  Iniciar Proyecto con Vite + React + TypeScript                                                                                                    |||
+||| --               --  Crear la Carpeta Raíz del Proyecto                                                                                                            |||
+||| --               --  Crear el Proyecto con Vite + React + TypeScript                                                                                               |||
+||| --  02.  ESTRUCTURA DEL PROYECTO                                                                                                                                   |||
+||| --       02.01.  Crear de forma automática la Estructura de Carpetas y Archivos del proyecto                                                                       |||
+||| --  03.  CONFIGURACIÓN TÉCNICA                                                                                                                                     |||
+||| --       03.01.  Configurar Versiones Específicas                                                                                                                  |||
+||| --       03.02.  Instalar Dependencias                                                                                                                             |||
+||| --       03.03.  Configurar Alias de Rutas                                                                                                                         |||
+||| --       03.04.  Configurar Tipos Globales TypeScript                                                                                                              |||
+||| --       03.05.  Configurar ESLint + Prettier                                                                                                                      |||
+||| --       03.06.  Configurar Variables de Entorno                                                                                                                   |||
+||| --  04.  CÓDIGO BASE                                                                                                                                               |||
+||| --       04.01.  Crear App.tsx y Router Principal                                                                                                                  |||
+||| --       04.02.  Configurar Estilos Globales y Tema                                                                                                                |||
+|||                                                                                                                                                                    |||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------- 01.  ENTORNO DE DESARROLLO ---------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.01.  Configuración Inicial: --------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+      ┌ --------------------------------------------------------------------------- ┐
+        --  Verificar Directivas en PowerShell
+      └ --------------------------------------------------------------------------- ┘
+
+            01. Abrir el 'PowerShell' de Windows
+            
+            02. Ejecutar el siguiente comando
+
+                ⦿  PS C:\..\..> Get-ExecutionPolicy                
+
+            03. Si aparece 'Restricted', hay que cambiarla a 'Unrestricted' de la siguiente forma:
+
+                ⦿  PS C:\..\..> Set-ExecutionPolicy -Scope CurrentUser
+
+                    cmdlet Set-ExecutionPolicy en la posición 1 de la canalización de comandos
+                    Proporcione valores para los parámetros siguientes:
+                    ExecutionPolicy: Unrestricted
+
+      ┌ --------------------------------------------------------------------------- ┐
+        --  Instalar Node Js
+      └ --------------------------------------------------------------------------- ┘
+
+            01. En el 'PowerShell' verificar la instalaciòn de 'node.js' y 'npm' con sus versiones:
+
+                ⦿  PS C:\..\..> node --version
+
+                ⦿  PS C:\..\..> npm --version
+            
+            02. SI NO està instalado: 
+
+                ⦿  Descargar 'node.js': https://nodejs.org/es/.
+
+                ⦿  Instalar 'node.js'.
+
+                ⦿  Repetir el 'Punto 01'.
+                      
+      ┌ --------------------------------------------------------------------------- ┐
+        --  Instalar Visual Studio Code
+      └ --------------------------------------------------------------------------- ┘
+
+            01. Abrir 'Visual Studio Code', SI NO està instalado:
+
+                ⦿  Descargar 'Visual Studio Code': https://code.visualstudio.com/download.
+
+                ⦿  Instalar 'Visual Studio Code'.
+
+                    #  En el asistente de instalación dejar marcado:   ☑ 'Agregar PATH…'.
+
+            02. Agregar extensiones en Visual Studio Code:
+
+                ⦿  React y JavaScript:
+
+                    #  Material Icon Theme
+                    #  dsznajder.es7-react-js-snippets
+                    #  ms-vscode.vscode-js-profile-flame
+                    #  formulahendry.auto-rename-tag
+
+                ⦿  Estilos:
+
+                    #  pranaygp.vscode-css-peek
+                    #  naumovs.color-highlight
+                    
+                ⦿  Productividad:
+
+                    #  esbenp.prettier-vscode
+                    #  formulahendry.auto-close-tag
+                    #  vscode-json
+
+                ⦿  Navegación
+
+                    #  eamodio.gitlens
+                    #  christian-kohler.path-intellisense
+                    #  ms-vscode.vscode-typescript-next
+                    
+                ⦿  Testing (opcional)
+
+                    #  orta.vscode-jest
+
+            03. Cerrar Visual Studio Code
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.02.  Iniciar Proyecto con Vite + React + TypeScript: -------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+      ┌ --------------------------------------------------------------------------- ┐
+        --  Crear la Carpeta Raíz del Proyecto
+      └ --------------------------------------------------------------------------- ┘
+
+            01. Crear en Windows una carpeta denominada 'proyecto'.
+            
+            02. Abrir la carpeta 'proyecto' en 'Visual Studio Code'.
+
+      ┌ --------------------------------------------------------------------------- ┐
+        --  Crear el Proyecto con Vite + React + TypeScript
+      └ --------------------------------------------------------------------------- ┘
+            
+            01. Abrir una 'Terminal' en 'Visual Studio Code':
+
+                ⦿  'Terminal / New Terminal' ó 'Ctrl + Shift + ñ'
+            
+            02. En la Terminal de 'Visual Studio Code' digitar lo siguiente:
+                    
+                ⦿  PS C:\..\proyecto> npm create vite@latest frontend_web -- --template react-ts
+
+                    Need to install the following packages:
+                    create-vite@8.2.0
+                    Ok to proceed? (y) y
+
+
+                    > npx
+                    > create-vite frontend_web --template react-ts
+
+                    │
+                    ◇  Use rolldown-vite (Experimental)?:
+                    │  No
+                    │
+                    ◇  Install with npm and start now?
+                    │  Yes
+                    │
+                    ◇  Scaffolding project in D:\..\proyecto\frontend_web...
+                    │
+                    ◇  Installing dependencies with npm...
+
+                    added 176 packages, and audited 177 packages in 57s
+
+                    45 packages are looking for funding
+                      run `npm fund` for details
+
+                    found 0 vulnerabilities
+                    │
+                    ◇  Starting dev server...
+
+                    > frontend_web@0.0.0 dev
+                    > vite
+
+
+                      VITE v7.3.1  ready in 1058 ms
+
+                      ➜  Local:   http://localhost:5173/
+                      ➜  Network: use --host to expose
+                      ➜  press h + enter to show help
+
+                ⦿  Mientras se tiene presionada la tecla 'CTRL', dar un click a 'http://localhost:5173/' que aparece en la terminal para abrir el proyecto en 
+                    el navegador
+            
+            03. Para detener el servidor de desarrollo, se presionan las teclas 'CTRL + C', estando en la terminal.
+            
+            04. Para ejecutar nuevamente el servidor de desarrollo, ejecute lo siguiente en la terminal:
+                
+                ⦿  PS C:\..\proyecto> cd frontend_web
+
+                ⦿  PS C:\proyecto\frontend_web> npm run dev
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------- 02.  ESTRUCTURA DEL PROYECTO -------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+                                                                                                                                                      # C = Carpetas
+                                                                                                                                                      # A = Archivos
+
+                    proyecto/                                                           # C. Raìz del proyecto
+                    └── frontend_web/                                                   # C. Proyecto React
+                        ├── public/                                                     # C.
+                        │   ├── favicon.ico                                             # A.
+                        │   ├── manifest.json                                           # A.
+                        │   ├── robots.txt                                              # A.
+                        │   ├── social-image.png                                        # A.
+                        │   └── vite.svg                                                # A.
+                        ├── src/                                                        # C.
+                        │   ├── assets/                                                 # C.
+                        │   │   ├── fonts/                                              # C.
+                        │   │   │   └── README.md                                       # A.
+                        │   │   ├── icons/                                              # C.
+                        │   │   │   └── svg/                                            # C.
+                        │   │   │       ├── home-icon.svg                               # A.
+                        │   │   │       ├── settings-icon.svg                           # A.
+                        │   │   │       └── user-icon.svg                               # A.
+                        │   │   ├── images/                                             # C.
+                        │   │   │   ├── backgrounds/                                    # C.
+                        │   │   │   │   └── auth-bg.jpg                                 # A.
+                        │   │   │   ├── icons/                                          # C.
+                        │   │   │   │   └── default-user.jpg                            # A.
+                        │   │   │   └── logos/                                          # C.
+                        │   │   │       └── app-logo.jpg                                # A.
+                        │   │   └── react.svg                                           # A.
+                        │   ├── data/                                                   # C. Capa para obtención y manipulación de datos.
+                        │   │   ├── repositories/                                       # C. Interfaces para acceder a diferentes fuentes de datos.
+                        │   │   │   ├── AuthRepository.ts                               # A. Lógica para la autenticación.
+                        │   │   │   └── UserLocalRepository.ts                          # A. Gestión de datos del usuario a nivel local (localStorage).
+                        │   │   └── sources/                                            # C. Implementaciones concretas de las fuentes de datos.
+                        │   │       ├── local/                                          # C. Lógica para acceder a datos almacenados localmente.
+                        │   │       │   └── LocalStorage.ts                             # A. Interactúa con el almacenamiento local (localStorage).
+                        │   │       └── remote/                                         # C. Interactúa con la API del backend.
+                        │   │           ├── api/                                        # C. Clientes o servicios para realizar llamadas a la API.
+                        │   │           │   └── ApiDelivery.ts                          # A. Cliente para interactuar con la API relacionada con "delivery".
+                        │   │           └── models/                                     # C. Estructuras de datos que se reciben de la API.
+                        │   │               └── ResponseApiDelivery.ts                  # A. Tipo de la respuesta de la API de "delivery".
+                        │   ├── domain/                                                 # C. Lógica de negocio y entidades del dominio.
+                        │   │   ├── entities/                                           # C. Estructuras de los objetos del negocio.
+                        │   │   │   └── User.ts                                         # A. Entidad de usuario con sus propiedades.
+                        │   │   ├── repositories/                                       # C. Interfaces para acceder a los datos.
+                        │   │   │   ├── AuthRepository.ts                               # A. Interfaz para las operaciones de autenticación.
+                        │   │   │   └── UserLocalRepository.ts                          # A. Interfaz para la gestión de datos locales del usuario.
+                        │   │   └── useCases/                                           # C. Lógica de negocio específica.
+                        │   │       ├── auth/                                           # C. Casos de uso relacionados con la autenticación.
+                        │   │       │   ├── LoginAuth.ts                                # A. Lógica para el proceso de inicio de sesión.
+                        │   │       │   └── RegisterAuth.ts                             # A. Lógica para el proceso de registro.
+                        │   │       └── userLocal/                                      # C. Casos de uso relacionados con la gestión local.
+                        │   │           ├── GetUserLocal.ts                             # A. Obtener información del usuario almacenado localmente.
+                        │   │           ├── RemoveUserLocal.ts                          # A. Eliminar información del usuario almacenado localmente.
+                        │   │           └── SaveUserLocal.ts                            # A. Guardar la información del usuario localmente.
+                        │   ├── presentation/                                           # C. Capa de la interfaz y presentación de datos.
+                        │   │   ├── components/                                         # C. Componentes de interfaz de usuario.
+                        │   │   │   ├── CustomTextInput.tsx                             # A. Componente de entrada de texto personalizado.
+                        │   │   │   └── RoundedButton.tsx                               # A. Componente de botón con bordes redondeados.
+                        │   │   ├── hooks/                                              # C. Hooks personalizados.
+                        │   │   │   └── useUserLocal.ts                                 # A. Hook para manipular la información local del usuario.
+                        │   │   ├── theme/                                              # C. Estilos y temática visual.
+                        │   │   │   └── AppTheme.ts                                     # A. Paleta de colores, tipografía y estilos.
+                        │   │   └── views/                                              # C. Pantallas o vistas principales.
+                        │   │       ├── home/                                           # C. Archivos de la pantalla principal.
+                        │   │       │   ├── Home.tsx                                    # A. Componente principal de Home.
+                        │   │       │   ├── Styles.scss                                 # A. Estilos específicos para Home.
+                        │   │       │   └── ViewModel.ts                                # A. Lógica de presentación para Home.
+                        │   │       ├── profile/                                        # C. Archivos de la pantalla de perfil.
+                        │   │       │   └── info/                                       # C. Archivos de información del perfil.
+                        │   │       │       ├── ProfileInfo.tsx                         # A. Componente para mostrar información del perfil.
+                        │   │       │       └── ViewModel.ts                            # A. Lógica de presentación para el perfil.
+                        │   │       └── register/                                       # C. Archivos de la pantalla de registro.
+                        │   │           ├── Register.tsx                                # A. Componente principal de registro.
+                        │   │           ├── Styles.scss                                 # A. Estilos específicos para registro.
+                        │   │           └── ViewModel.ts                                # A. Lógica de presentación para registro.
+                        │   ├── types/                                                  # C.
+                        │   │   └── global.d.ts                                         # A.
+                        │   ├── utils/                                                  # C.
+                        │   │   ├── constants/                                          # C.
+                        │   │   │   ├── api.ts                                          # A.
+                        │   │   │   ├── app.ts                                          # A.
+                        │   │   │   ├── storage.ts                                      # A.
+                        │   │   │   └── validation.ts                                   # A.
+                        │   │   ├── helpers/                                            # C.
+                        │   │   │   ├── formatters.ts                                   # A.
+                        │   │   │   ├── http.ts                                         # A.
+                        │   │   │   └── validators.ts                                   # A.
+                        │   │   └── hooks/                                              # C.
+                        │   │   │   └── useLocalStorage.ts                              # A.
+                        │   ├── App.css                                                 # A.
+                        │   ├── App.tsx                                                 # A. Raíz de la aplicación React.
+                        │   ├── index.css                                               # A.
+                        │   ├── main.tsx                                                # A. Punto de entrada de la aplicación.
+                        │   └── vite-env.d.ts                                           # A. Tipos de Vite.
+                        ├── .env                                                        # A.
+                        ├── .env.development                                            # A.
+                        ├── .env.example                                                # A.
+                        ├── .env.production                                             # A.
+                        ├── .gitignore                                                  # A.
+                        ├── .prettierrc                                                 # A.
+                        ├── eslint.config.js                                            # A.
+                        ├── index.html                                                  # A.
+                        ├── package-lock.json                                           # A.
+                        ├── package.json                                                # A. Manifiesto del proyecto.
+                        ├── README.md                                                   # A.
+                        ├── tsconfig.app.json                                           # A.
+                        ├── tsconfig.json                                               # A. Configuración de TypeScript.
+                        ├── tsconfig.node.json                                          # A.
+                        └── vite.config.ts                                              # A. Configuración de Vite.
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.01.  Crear de forma automática la Estructura de Carpetas y Archivos del proyecto: --------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar el siguiente archivo en 'frontend_web':
+
+                https://github.com/ProfeAlbeiro/05_software_frontend/blob/main/react/resources/structure/create-structure.ps1
+
+            02. Ejecutar el siguiente comando en la terminal:
+
+                ⦿  PS C:\proyecto\frontend_web> powershell -ExecutionPolicy Bypass -File .\create-structure.ps1
+
+            03. Elimine el archivo 'create-structure.ps1'.            
+            
+            04. Descargar en la carpeta 'proyecto/frontend_web/src/assets/images/backgrounds' las imágenes del proyecto en:
+
+                https://github.com/ProfeAlbeiro/05_software_frontend/tree/main/react/resources/assets
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------- 03.  CONFIGURACIÓN TÉCNICA ---------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.01.  Configurar Versiones Específicas: ---------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Reemplazar el contenido de 'package.json':
+
+                      1    {
+                      2      "name": "frontend_web",
+                      3      "private": true,
+                      4      "version": "0.0.0",
+                      5      "type": "module",
+                      6      "scripts": {
+                      7        "dev": "vite",
+                      8        "build": "tsc -b && vite build",
+                      9        "lint": "eslint .",
+                     10        "preview": "vite preview"
+                     11      },
+                     12      "dependencies": {
+                     13        "react": "^19.2.0",
+                     14        "react-dom": "^19.2.0"
+                     15      },
+                     16      "devDependencies": {
+                     17        "@eslint/js": "^9.39.1",
+                     18        "@types/node": "^24.10.0",
+                     19        "@types/react": "^19.2.2",
+                     20        "@types/react-dom": "^19.2.2",
+                     21        "@vitejs/plugin-react": "^5.1.0",
+                     22        "eslint": "^9.39.1",
+                     23        "eslint-plugin-react-hooks": "^7.0.1",
+                     24        "eslint-plugin-react-refresh": "^0.4.24",
+                     25        "globals": "^16.5.0",
+                     26        "typescript": "~5.9.3",
+                     27        "typescript-eslint": "^8.46.3",
+                     28        "vite": "^7.2.2"
+                     29      }
+                     30    }
+
+            02. Instalar las dependencias de acuerdo a las versiones:
+              
+                ⦿  PS C:\proyecto\frontend_web> npm install
+
+            03. Verificar las versiones:
+
+                ⦿  PS C:\proyecto\frontend_web> npm list react vite typescript
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.02.  Instalar Dependencias: --------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Instalar dependencias de 'desarrollo' desde la terminal:
+
+                ⦿  PS C:\proyecto\frontend_web> npm install -D @types/node @types/lodash eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser 
+                    eslint-plugin-react-hooks eslint-plugin-react-refresh prettier eslint-config-prettier eslint-plugin-prettier @eslint/js globals typescript-eslint
+
+            02. Instalar dependencias de 'producción' desde la terminal:
+
+                ⦿  PS C:\proyecto\frontend_web> npm install react-router-dom axios lodash dayjs zustand react-hook-form yup @hookform/resolvers
+
+            03. Verificar instalación desde la terminal:
+
+                ⦿  PS C:\proyecto\frontend_web> npm list --depth=0
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.03.  Configurar Alias de Rutas: ----------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Modificar 'vite.config.ts':
+
+                      1    import { defineConfig } from 'vite'
+                      2    import react from '@vitejs/plugin-react'
+                      3    import { resolve } from 'path'
+                      4    
+                      5    export default defineConfig({
+                      6      plugins: [react()],
+                      7      resolve: {
+                      8        alias: {
+                      9          // Rutas absolutas desde src
+                     10          '@': resolve(__dirname, 'src'),
+                     11          '@assets': resolve(__dirname, 'src/assets'),
+                     12          '@data': resolve(__dirname, 'src/data'),
+                     13          '@domain': resolve(__dirname, 'src/domain'),
+                     14          '@presentation': resolve(__dirname, 'src/presentation'),
+                     15          '@components': resolve(__dirname, 'src/presentation/components'),
+                     16          '@hooks': resolve(__dirname, 'src/presentation/hooks'),
+                     17          '@views': resolve(__dirname, 'src/presentation/views'),
+                     18          '@theme': resolve(__dirname, 'src/presentation/theme')
+                     19        }
+                     20      },
+                     21      server: {
+                     22        port: 3000,
+                     23        open: true
+                     24      }
+                     25    })
+
+            02. Modificar 'tsconfig.node.json':
+
+                      1    {
+                      2      "compilerOptions": {
+                      3        "composite": true,
+                      4        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+                      5        "target": "ES2023",
+                      6        "lib": ["ES2023"],
+                      7        "module": "ESNext",
+                      8        "types": ["node"],
+                      9        "skipLibCheck": true,
+                     10    
+                     11        /* Bundler mode */
+                     12        "moduleResolution": "bundler",
+                     13        "allowImportingTsExtensions": true,
+                     14        "allowSyntheticDefaultImports": true,
+                     15        "verbatimModuleSyntax": true,
+                     16        "moduleDetection": "force",
+                     17        "noEmit": true,
+                     18    
+                     19        /* Linting */
+                     20        "strict": true,
+                     21        "noUnusedLocals": true,
+                     22        "noUnusedParameters": true,
+                     23        "erasableSyntaxOnly": true,
+                     24        "noFallthroughCasesInSwitch": true,
+                     25        "noUncheckedSideEffectImports": true
+                     26      },
+                     27      "include": ["vite.config.ts"]
+                     28    }
+
+            03. Modificar 'tsconfig.json':
+
+                      1    {
+                      2      "compilerOptions": {
+                      3        "target": "ES2020",
+                      4        "useDefineForClassFields": true,
+                      5        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+                      6        "module": "ESNext",
+                      7        "skipLibCheck": true,
+                      8        "moduleResolution": "bundler",
+                      9        "allowImportingTsExtensions": true,
+                     10        "resolveJsonModule": true,
+                     11        "isolatedModules": true,
+                     12        "noEmit": true,
+                     13        "jsx": "react-jsx",
+                     14        "strict": true,
+                     15        "noUnusedLocals": true,
+                     16        "noUnusedParameters": true,
+                     17        "noFallthroughCasesInSwitch": true,
+                     18        
+                     19        "paths": {
+                     20          "@/*": ["./src/*"],
+                     21          "@data/*": ["./src/data/*"],
+                     22          "@domain/*": ["./src/domain/*"],
+                     23          "@presentation/*": ["./src/presentation/*"],
+                     24          "@components/*": ["./src/presentation/components/*"],
+                     25          "@hooks/*": ["./src/presentation/hooks/*"],
+                     26          "@views/*": ["./src/presentation/views/*"],
+                     27          "@theme/*": ["./src/presentation/theme/*"]
+                     28        }
+                     29      },
+                     30      "include": ["src"],
+                     31      "references": [{ "path": "./tsconfig.node.json" }]
+                     32    }
+
+            04. Verificar ejecutando el proyecto:
+
+                ⦿  PS C:\proyecto\frontend_web> npm run dev
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.04.  Configurar Tipos Globales TypeScript: -----------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Codificar 'src/types/global.d.ts':
+
+                      1    declare module '*.css' {
+                      2      const content: string;
+                      3      export default content;
+                      4    }
+                      5    
+                      6    declare module '*.scss' {
+                      7      const content: string;
+                      8      export default content;
+                      9    }
+                     10    
+                     11    declare module '*.svg' {
+                     12      import { FC, SVGProps } from 'react';
+                     13      export const ReactComponent: FC<SVGProps<SVGSVGElement>>;
+                     14      const src: string;
+                     15      export default src;
+                     16    }
+                     17    
+                     18    declare module '*.png' {
+                     19      const content: string;
+                     20      export default content;
+                     21    }
+                     22    
+                     23    declare module '*.jpg' {
+                     24      const content: string;
+                     25      export default content;
+                     26    }
+                     27    
+                     28    declare module '*.jpeg' {
+                     29      const content: string;
+                     30      export default content;
+                     31    }
+                     32    
+                     33    declare module '*.gif' {
+                     34      const content: string;
+                     35      export default content;
+                     36    }
+                     37    
+                     38    declare module '*.webp' {
+                     39      const content: string;
+                     40      export default content;
+                     41    }
+                     42    
+                     43    declare module '*.ico' {
+                     44      const content: string;
+                     45      export default content;
+                     46    }
+                     47    
+                     48    declare module '*.woff' {
+                     49      const content: string;
+                     50      export default content;
+                     51    }
+                     52    
+                     53    declare module '*.woff2' {
+                     54      const content: string;
+                     55      export default content;
+                     56    }
+                     57    
+                     58    declare module '*.ttf' {
+                     59      const content: string;
+                     60      export default content;
+                     61    }
+                     62    
+                     63    declare module '*.eot' {
+                     64      const content: string;
+                     65      export default content;
+                     66    }
+                     67    
+                     68    declare module '*.json' {
+                     69      const content: unknown;
+                     70      export default content;
+                     71    }
+                     72    
+                     73    interface ImportMetaEnv {
+                     74      readonly VITE_API_URL: string;
+                     75      readonly VITE_APP_NAME: string;
+                     76      readonly VITE_APP_VERSION: string;
+                     77    }
+                     78    
+                     79    interface ImportMeta {
+                     80      readonly env: ImportMetaEnv;
+                     81    }
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.05.  Configurar ESLint + Prettier: -------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Modificar 'eslint.config.js':
+
+                      1    import js from '@eslint/js'
+                      2    import globals from 'globals'
+                      3    import reactHooks from 'eslint-plugin-react-hooks'
+                      4    import reactRefresh from 'eslint-plugin-react-refresh'
+                      5    import tseslint from 'typescript-eslint'
+                      6    import { defineConfig, globalIgnores } from 'eslint/config'
+                      7    
+                      8    export default defineConfig([
+                      9      globalIgnores(['dist', 'node_modules']),
+                     10      {
+                     11        files: ['**/*.{ts,tsx}'],
+                     12        extends: [
+                     13          js.configs.recommended,
+                     14          tseslint.configs.recommended,
+                     15          reactHooks.configs.flat.recommended,
+                     16          reactRefresh.configs.vite,
+                     17        ],
+                     18        languageOptions: {
+                     19          ecmaVersion: 2020,
+                     20          globals: globals.browser,
+                     21        },
+                     22        rules: {
+                     23          '@typescript-eslint/no-unused-vars': 'error',
+                     24          '@typescript-eslint/no-explicit-any': 'warn',
+                     25          'react-refresh/only-export-components': [
+                     26            'warn',
+                     27            { allowConstantExport: true },
+                     28          ],
+                     29        },
+                     30      },
+                     31    ])
+
+            02. Codificar '.prettierrc':
+
+                      1    {
+                      2      "semi": true,
+                      3      "singleQuote": true,
+                      4      "tabWidth": 2,
+                      5      "trailingComma": "es5",
+                      6      "printWidth": 80,
+                      7      "endOfLine": "auto",
+                      8      "bracketSpacing": true,
+                      9      "bracketSameLine": false,
+                     10      "arrowParens": "avoid"
+                     11    }
+
+            03. Modificar 'package.json':
+
+                      1    {
+                      2      "name": "frontend_web",
+                      3      "private": true,
+                      4      "version": "0.0.0",
+                      5      "type": "module",
+                      6      "scripts": {
+                      7        "dev": "vite",
+                      8        "build": "tsc -b && vite build",
+                      9        "preview": "vite preview",
+                     10        "lint": "eslint . --ext .ts,.tsx --fix",
+                     11        "format": "prettier --write \"src/**/*.{ts,tsx,json,css,scss}\"",
+                     12        "type-check": "tsc --noEmit",
+                     13        "build:prod": "npm run lint && npm run type-check && vite build"
+                     14      },
+                     15      "dependencies": {
+                     16        "@hookform/resolvers": "^5.2.2",
+                     17        "axios": "^1.13.2",
+                     18        "dayjs": "^1.11.19",
+                     19        "lodash": "^4.17.21",
+                     20        "react": "^19.2.0",
+                     21        "react-dom": "^19.2.0",
+                     22        "react-hook-form": "^7.66.1",
+                     23        "react-router-dom": "^7.9.6",
+                     24        "yup": "^1.7.1",
+                     25        "zustand": "^5.0.8"
+                     26      },
+                     27      "devDependencies": {
+                     28        "@eslint/js": "^9.39.1",
+                     29        "@types/lodash": "^4.17.20",
+                     30        "@types/node": "^24.10.1",
+                     31        "@types/react": "^19.2.2",
+                     32        "@types/react-dom": "^19.2.2",
+                     33        "@typescript-eslint/eslint-plugin": "^8.47.0",
+                     34        "@typescript-eslint/parser": "^8.47.0",
+                     35        "@vitejs/plugin-react": "^5.1.0",
+                     36        "eslint": "^9.39.1",
+                     37        "eslint-config-prettier": "^10.1.8",
+                     38        "eslint-plugin-prettier": "^5.5.4",
+                     39        "eslint-plugin-react-hooks": "^7.0.1",
+                     40        "eslint-plugin-react-refresh": "^0.4.24",
+                     41        "globals": "^16.5.0",
+                     42        "prettier": "^3.6.2",
+                     43        "typescript": "~5.9.3",
+                     44        "typescript-eslint": "^8.47.0",
+                     45        "vite": "^7.2.2"
+                     46      }
+                     47    }
+
+            04. Actualizar dependencias:
+
+                ⦿  PS C:\proyecto\frontend_web> npm install
+            
+            05. Probar 'ESLint' (nueva sintaxis):
+
+                ⦿  PS C:\proyecto\frontend_web> npm run lint
+
+            06. Probar 'Prettier':
+
+                ⦿  PS C:\proyecto\frontend_web> npm run format
+
+            07. Verificar 'TypeScript':
+
+                ⦿  PS C:\proyecto\frontend_web> npm run type-check
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 03.06.  Configurar Variables de Entorno: ----------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Codificar '.env':
+
+                      1    VITE_API_URL=http://localhost:3000/api
+                      2    VITE_APP_NAME=Frontend Web App (Dev)
+                      3    VITE_APP_VERSION=1.0.0
+
+            02. Codificar '.env.development':
+
+                      1    VITE_API_URL=http://localhost:3000/api
+                      2    VITE_APP_NAME=Frontend Web App (Dev)
+                      3    VITE_APP_VERSION=1.0.0
+
+            03. Codificar '.env.example':
+
+                      1    VITE_API_URL=your_api_url_here
+                      2    VITE_APP_NAME=your_app_name
+                      3    VITE_APP_VERSION=1.0.0
+
+            04. Codificar '.env.production':
+
+                      1    VITE_API_URL=https://api.midominio.com
+                      2    VITE_APP_NAME=Frontend Web App (build)
+                      3    VITE_APP_VERSION=1.0.0
+
+            05. Agregar a '.gitignore' las variables de entorno, quedando así:
+
+                      1    # Logs 
+                      2    logs
+                      3    *.log
+                      4    npm-debug.log*
+                      5    yarn-debug.log*
+                      6    yarn-error.log*
+                      7    pnpm-debug.log*
+                      8    lerna-debug.log*
+                      9    
+                     10    node_modules
+                     11    dist
+                     12    dist-ssr
+                     13    *.local
+                     14    
+                     15    # Editor directories and files
+                     16    .vscode/*
+                     17    !.vscode/extensions.json
+                     18    .idea
+                     19    .DS_Store
+                     20    *.suo
+                     21    *.ntvs*
+                     22    *.njsproj
+                     23    *.sln
+                     24    *.sw?
+                     25    
+                     26    # Variables de entorno
+                     27    .env
+                     28    .env.*
+                     29    !.env.example
+
+            06. Modificar 'src/App.tsx':
+
+                      1    import { useState } from 'react'
+                      2    import reactLogo from './assets/react.svg'
+                      3    import viteLogo from '/vite.svg'
+                      4    import './App.css'
+                      5    
+                      6    function App() {
+                      7      const [count, setCount] = useState(0)
+                      8    
+                      9      // Mostrar variables de entorno en consola
+                     10      console.log('Variables de entorno:');
+                     11      console.log('API URL:', import.meta.env.VITE_API_URL);
+                     12      console.log('App Name:', import.meta.env.VITE_APP_NAME);
+                     13      console.log('App Version:', import.meta.env.VITE_APP_VERSION);
+                     14    
+                     15      return (
+                     16        <>
+                     17          <div>
+                     18            <a href="https://vitejs.dev" target="_blank">
+                     19              <img src={viteLogo} className="logo" alt="Vite logo" />
+                     20            </a>
+                     21            <a href="https://react.dev" target="_blank">
+                     22              <img src={reactLogo} className="logo react" alt="React logo" />
+                     23            </a>
+                     24          </div>
+                     25          <h1>{import.meta.env.VITE_APP_NAME} v{import.meta.env.VITE_APP_VERSION}</h1>
+                     26          <div className="card">
+                     27            <button onClick={() => setCount((count) => count + 1)}>
+                     28              count is {count}
+                     29            </button>
+                     30            <p>
+                     31              Edit <code>src/App.tsx</code> and save to test HMR
+                     32            </p>
+                     33          </div>
+                     34          <p className="read-the-docs">
+                     35            Click on the Vite and React logos to learn more
+                     36          </p>
+                     37        </>
+                     38      )
+                     39    }
+                     40    
+                     41    export default App
+
+            07. Verificar funcionamiento del proyecto:
+
+                ⦿  PS C:\proyecto\frontend_web> npm run dev
+            
+            08. Parar crear '.env' a partir de la plantilla:
+
+                ⦿  PS C:\proyecto\frontend_web> cp .env.example .env
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------------- 04.  CÓDIGO BASE -------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.01.  Crear App.tsx y Router Principal: ---------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. :
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------------------------ ANEXOS ------------------------------------------------------------------------------|||
+||| ------------------------------------------------------------------------- TENER EN CUENTA -------------------------------------------------------------------------|||
+|||--------------------------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_01.  Instalar Git: -----------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'Git': https://git-scm.com/downloads.
+
+            02. Instalar Git.
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_02.  Crear cuenta en 'Github': -----------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Ingresar 'Github': https://github.com/signup?source=login.
+
+            02. Seguir los pasos de creación de la cuenta.
+
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_03.  Subir el proyecto a un repositorio 'Github': ----------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            Para evitar confusiones y seguir los pasos correctamente, la carpeta raíz del proyecto se llamará 'proyecto'.
+            
+            01. Verificar que no haya una cuenta de 'Github' asociada al computador, para ello, debe abrir el 'Panel de Control', dar click en 'Cuentas 
+                de usuario / Administrar credenciales de Windows'. Si hay una cuenta asociada 'git:https://github.com', dar click sobre la cuenta y click
+                sobre la opción 'Quitar'. 
+            
+                    ⦿  De no funcionar este método porque no tiene acceso al Panel de control, pruebe abriendo el 'Windows PowerShell' y digite el 
+                         siguiente comando:
+
+                         PS C:\..\..> echo "protocol=https`nhost=github.com`n" | git credential-manager erase
+            
+            02. Abrir su cuenta de 'Github' y en la parte superior derecha, dar click al 'Nombre de su cuenta / Your Repositories'. Dar click en 'New'.
+                En el control de texto 'Repository name', escribir el nombre de la carpeta raíz de su proyecto (ejemplo, 'proyecto'. La carpeta raíz no debe 
+                tener espacios, ni caracteres compuesto, ni caracteres especiales) y dar click en 'Create Repository'.
+
+                    ⦿  Si no tiene cuenta en 'GitHub', debe crear una.
+            
+            03. Click derecho sobre la carpeta raíz (ejemplo, 'proyecto') y seleccionar la opción 'Open Git Bash here'; si no se 
+                encuentra la opción, hay que instalar 'Git'.
+            
+            04. En el 'Git Bash' escribir lo siguiente:
+
+                    $ git config --global user.name "nombre de su cuenta"
+                    $ git config --global user.email "correo de su cuenta"
+
+                    $ git init
+                    $ git branch -M main
+                    $ git remote add origin https://github.com/SenaProfeAlbeiro/proyecto.git
+                    $ git add .
+                    $ git commit -m "Subiendo Proyecto"
+                    $ git push -u origin main
+
+            05. Va a aparecer una ventana denominada 'Connect to Github', dar click en la opción 'Sign in with your browser', dar click en 'Authentication 
+                Succeeded'. Verificar que se haya abierto en el navegador en donde tiene la cuenta activa, de lo contrario hay que escribir nuevamente las
+                credenciales de 'Github'. En el 'Git Bash' debe aparecer texto similar al siguiente:
+
+                    Enumerating objects: 3, done.
+                    Counting objects: 100% (3/3), done.
+                    Writing objects: 100% (3/3), 226 bytes | 226.00 KiB/s, done.
+                    Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+                    To https://github.com/SenaProfeAlbeiro/proyecto.git
+                    * [new branch]      main -> main
+                    branch 'main' set up to track 'origin/main'.
+            
+            06. Actualizar la ventana del navegador donde se encuentra abierta su cuenta de 'Github'
+            
+            07. Para actualizar la información del proyecto en 'Github', en el 'Git bash' escribir los siguientes comandos:
+
+                    $ git add .
+                    $ git commit -m "Comentario del cambio"
+                    $ git push
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_04.  Clonar un proyecto 'Github': --------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir su cuenta de 'Github' y en la parte superior derecha, dar click al 'Nombre de su cuenta / Your Repositories'. 
+
+            02. Dar click al proyecto que desea clonar, en el caso del ejemplo es 'proyecto'.
+
+            03. Dar click en la opción '<> Code / Copy url to clipboard'.
+
+            04. Ir a una carpeta de Windows, por ejemplo, en el 'C:\xampp\htdocs' (en el caso del ejemplo, 'proyecto').
+
+            05. Click derecho sobre el área de trabajo y seleccionar la opción 'Open Git Bash here'; si no se encuentra la opción, hay que instalar 
+                'Git'.
+ 
+            06. En el 'Git Bash' pegar el repositorio clonado de 'Github' con 'CTRL + INSERT', quedando como sigue:
+
+                         $ git clone https://github.com/SenaProfeAlbeiro/proyecto.git
+
+                    ⦿  Si el proyecto ya se encuentra en el computador, puede utilizar el siguiente comando para actualizar la información:
+                    
+                         $ git pull
+            
+            07. Abrir el proyecto en Visual Studio Code.
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- AX_05.  Puesta en marcha del proyecto: ------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Garantiza r el ambiente de desarrollo (Ver apartado 01. ENTORNO DE DESARROLLO).
+            
+            02. Clonar el proyecto desde github en 'C:\xampp\htdocs' (Ver apartado AX_02. Clonar un proyecto 'Github').
+            
+            03. Abrir el proyecto en Visual Studio Code.
+
+            04. Abrir el emulador de Android Studio
+
+            05. Tomar en cuenta la 'ipconfig' del 'node_js/server.js' y 'my-app/src/Data/sources/remote/api/apiDelivery.tsx' ya que deben coincidir
+
+            06. Abrir una terminal en 'Visual Studio Code' y ejecutar los siguientes comandos:
+
+                ⦿   PS C:\..> cd backend
+                ⦿   PS C:\..\backend> npm install
+                ⦿   PS C:\..\backend> node index.js
+            
+            07. Abrir otra terminal en 'Visual Studio Code' y ejecutar los siguientes comandos:
+
+                ⦿   PS C:\..> cd frontend_mob
+                ⦿   PS C:\..\react_native> npm install -g expo-cli exp                    
+                ⦿   PS C:\..\frontend_mob> npm install
+                ⦿   PS C:\..\frontend_mob> npm run android
+
+            08. Comprobar que se ejecute correctamente la aplicación.
