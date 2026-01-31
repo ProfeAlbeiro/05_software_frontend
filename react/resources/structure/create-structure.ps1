@@ -64,7 +64,6 @@ $files = @(
     ".env",
     ".env.development", 
     ".env.example",
-    ".env.local",
     ".env.production",
     
     # Config Files (agregados por nosotros)
