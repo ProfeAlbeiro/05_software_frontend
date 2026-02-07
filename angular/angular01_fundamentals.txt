@@ -265,7 +265,7 @@
                     ⦿   Nómbrela: 'frontend'
                     ⦿   En caso de tener problemas con la instalación de dependencias a través de 'npm', utilizar el siguiente comando:
                          
-                         PS C:\..\..\angular> npm install -g @angular/cli@20.0.1             
+                         PS C:\..\..\angular> npm config set registry https://registry.npmmirror.com
 
                 |                                                                                                                                         |
                 └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
