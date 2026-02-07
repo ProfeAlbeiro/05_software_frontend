@@ -263,6 +263,10 @@
                     
                     ⦿   Para cambiar el nombre de la terminal, seleccionela en la parte inferior derecha y presionando F2 / Rename...
                     ⦿   Nómbrela: 'frontend'
+                    ⦿   En caso de tener problemas con la instalación de dependencias a través de 'npm', utilizar el siguiente comando:
+                         
+                         PS C:\..\..\angular> npm install -g @angular/cli@20.0.1             
+
                 |                                                                                                                                         |
                 └ --------------------------------------------------------------------------------------------------------------------------------------- ┘
 
