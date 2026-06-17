@@ -22,7 +22,42 @@
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 01.01. Estructura de carpetas -----------------------------------------------------------------------------------------------------------------------|
+|-- 01.01. Crear la base de datos -----------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+              01    DROP DATABASE IF EXISTS housing_db;
+              02
+              03    CREATE DATABASE housing_db;
+              04
+              05    USE housing_db;
+              06
+              07    CREATE TABLE locations (
+              08        id INT PRIMARY KEY,
+              09        name VARCHAR(255) NOT NULL,
+              10        city VARCHAR(100) NOT NULL,
+              11        state CHAR(2) NOT NULL,
+              12        photo VARCHAR(500),
+              13        availableUnits INT NOT NULL,
+              14        wifi BOOLEAN NOT NULL,
+              15        laundry BOOLEAN NOT NULL
+              16    );
+              17
+              18    INSERT INTO locations (id, name, city, state, photo, availableUnits, wifi, laundry) VALUES
+              19    (1, 'Acme Fresh Start Housing', 'Chicago', 'IL', 'https://angular.dev/assets/images/tutorials/common/bernard-hermant-CLKGGwIBTaY-unsplash.jpg', 4, TRUE, TRUE),
+              20    (2, 'A113 Transitional Housing', 'Santa Monica', 'CA', 'https://angular.dev/assets/images/tutorials/common/brandon-griggs-wR11KBaB86U-unsplash.jpg', 0, FALSE, TRUE),
+              21    (3, 'Warm Beds Housing Support', 'Juneau', 'AK', 'https://angular.dev/assets/images/tutorials/common/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg', 1, FALSE, FALSE),
+              22    (4, 'Homesteady Housing', 'Chicago', 'IL', 'https://angular.dev/assets/images/tutorials/common/ian-macdonald-W8z6aiwfi1E-unsplash.jpg', 1, TRUE, FALSE),
+              23    (5, 'Happy Homes Group', 'Gary', 'IN', 'https://angular.dev/assets/images/tutorials/common/krzysztof-hepner-978RAXoXnH4-unsplash.jpg', 1, TRUE, FALSE),
+              24    (6, 'Hopeful Apartment Group', 'Oakland', 'CA', 'https://angular.dev/assets/images/tutorials/common/r-architecture-JvQ0Q5IkeMM-unsplash.jpg', 2, TRUE, TRUE),
+              25    (7, 'Seriously Safe Towns', 'Oakland', 'CA', 'https://angular.dev/assets/images/tutorials/common/phil-hearing-IYfp2Ixe9nM-unsplash.jpg', 5, TRUE, TRUE),
+              26    (8, 'Hopeful Housing Solutions', 'Oakland', 'CA', 'https://angular.dev/assets/images/tutorials/common/r-architecture-GGupkreKwxA-unsplash.jpg', 2, TRUE, TRUE),
+              27    (9, 'Seriously Safe Towns', 'Oakland', 'CA', 'https://angular.dev/assets/images/tutorials/common/saru-robert-9rP3mxf8qWI-unsplash.jpg', 10, FALSE, FALSE),
+              28    (10, 'Capital Safe Towns', 'Portland', 'OR', 'https://angular.dev/assets/images/tutorials/common/webaliser-_TPTXZd9mOo-unsplash.jpg', 6, TRUE, TRUE);
+
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.02. Estructura de carpetas -----------------------------------------------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               htdocs/                                    #   Carpeta de XAMPP donde se guardan los proyectos PHP
@@ -36,13 +71,42 @@
                       │   └── Location.php               #   Modelo de Datos de 'Location'
 
 
-              NOTA: Se debe crear la base de datos. Puede descargarla desde el siguiente enlace:
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.03. config/DbConn.php ----------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-                    https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/db/db.sql
+              01      <?php
+              02        class DbConn{
+              03          public static function connection(){
+              04            try {
+              05              $hostname = "localhost";
+              06              $port = "3306";
+              07              $database = "housing_db";
+              08              $username = "root";
+              09              $password = "";
+              10              $pdo = new PDO("mysql:host=$hostname;port=$port;dbname=$database;charset=utf8",$username,$password);
+              11              $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              12              return $pdo;
+              13            } catch (Exception $e) {
+              14              print "¡Error BD!: " . $e->getMessage() . "<br/>";
+              15              die();
+              16            }
+              17          }
+              18        }
+              19      ?>
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 01.02. models/location.php -------------------------------------------------------------------------------------------------------------------------|
+|-- 01.04. Prueba de conexión index.php (Crear, probar y eliminar el archivo) ---------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+              01    <?php
+              02      require_once "config/DbConn.php";
+              03      DbConn::connection();
+              04    ?>
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.05. models/location.php --------------------------------------------------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01    <?php
@@ -85,32 +149,7 @@
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 01.03. config/DbConn.php ----------------------------------------------------------------------------------------------------------------------------|
-|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-
-              01      <?php
-              02          class DbConn{
-              03              public static function connection(){
-              04                  try {
-              05                      $hostname = "localhost";
-              06                      $port = "3306";
-              07                      $database = "db";
-              08                      $username = "root";
-              09                      $password = "";
-              10                      $pdo = new PDO("mysql:host=$hostname;port=$port;dbname=$database;charset=utf8",$username,$password);
-              11                      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              12                      return $pdo;
-              13                  } catch (Exception $e) {
-              14                      print "¡Error BD!: " . $e->getMessage() . "<br/>";
-              15                      die();
-              16                  }
-              17              }
-              18          }
-              19      ?>
-
-
-|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 01.04. controllers/Locations.php --------------------------------------------------------------------------------------------------------------------|
+|-- 01.06. controllers/Locations.php --------------------------------------------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      <?php
@@ -310,8 +349,8 @@
 
 --- 02.03.03. Crear la interfaz, servicio y componente de 'housing-location'
 
-              PS C:\..\frontend> ng g i interfaces/housing-location
-              PS C:\..\frontend> ng g s services/housing-location
+              PS C:\..\frontend> ng g i interfaces/interface-housing-location
+              PS C:\..\frontend> ng g s services/service-housing-location
               PS C:\..\frontend> ng g c components/home
               PS C:\..\frontend> ng g c components/housing-location
               PS C:\..\frontend> ng g c components/details
@@ -341,19 +380,19 @@
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { bootstrapApplication } from '@angular/platform-browser';
-              02      import { AppComponent } from './app/app.component';
+              02      import { App } from './app/app';
               03      import { routes } from './app/app.routes';
               04      import { provideRouter } from '@angular/router';
               05      import { provideHttpClient } from '@angular/common/http';
               06
-              07      bootstrapApplication(AppComponent, {
+              07      bootstrapApplication(App, {
               08        providers: [provideHttpClient(), provideRouter(routes)]
               09      })
-              10        .catch((err) => console.error(err));
+              10       .catch((err) => console.error(err));
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.06. Componente Principal (.ts): frontend/src/app/app.component.ts --------------------------------------------------------------------------------|
+|-- 02.06. Componente Principal (.ts): frontend/src/app/app.ts ------------------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { Component } from '@angular/core';
@@ -365,25 +404,27 @@
               07        templateUrl: './app.component.html',
               08        styleUrl: './app.component.css'
               09      })
-              10      export class AppComponent {
+              10      export class App {
               11        title = 'frontend';
               12      }
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.07. Componente Principal (.html): frontend/src/app/app.component.html ----------------------------------------------------------------------------|
+|-- 02.07. Componente Principal (.html): frontend/src/app/app.html --------------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-              01      <main class="main">
-              02        <a routerLink="/">
-              03          <header class="brand-home">
-              04            <img class="brand-logo" src="assets/logo.svg" alt="logo" />
-              05          </header>
-              06        </a>
-              07        <section class="content">
-              08          <router-outlet />
-              09        </section>
-              10      </main>
+              01      import { Component } from '@angular/core';
+              02      import { RouterOutlet, RouterModule } from '@angular/router';
+              03
+              04      @Component({
+              05        selector: 'app-root',
+              06        imports: [RouterOutlet, RouterModule],
+              07        templateUrl: './app.html',
+              08        styleUrl: './app.css'
+              09      })
+              10      export class App {
+              11        title = 'frontend';
+              12      }
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -391,20 +432,20 @@
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { Routes } from '@angular/router';
-              02      import { HomeComponent } from './components/home/home.component';
-              03      import { DetailsComponent } from './components/details/details.component';
+              02      import { Home } from './components/home/home';
+              03      import { Details } from './components/details/details';
               04
               05      export const routes: Routes = [
-              06          {path:'', component: HomeComponent, title:'Home Page'},
-              07          {path:'details/:id', component: DetailsComponent, title:'Home Details'}
+              06          {path:'', component: Home, title:'Home Page'},
+              07          {path:'details/:id', component: Details, title:'Home Details'}
               08      ];
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.09. Interfaz: frontend/src/app/interfaces/housing-location.ts ------------------------------------------------------------------------------------|
+|-- 02.09. Interfaz: frontend/src/app/interfaces/interface-housing-location.ts --------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-              01      export interface HousingLocation {
+              01      export interface InterfaceHousingLocation {
               02        id?: number;
               03        name: string;
               04        city: string;
@@ -417,11 +458,11 @@
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.10. Servicio: frontend/src/app/services/housing-location.service.ts ------------------------------------------------------------------------------|
+|-- 02.10. Servicio: frontend/src/app/services/service-housing-location.ts ------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { Injectable } from '@angular/core';
-              02      import { HousingLocation } from '../interfaces/housing-location';
+              02      import { InterfaceHousingLocation } from '../interfaces/interface-housing-location';
               03
               04      @Injectable({
               05        providedIn: 'root'
@@ -431,7 +472,7 @@
               09
               10        constructor() { }
               11
-              12        async getAllHousingLocation(): Promise<HousingLocation[]> {
+              12        async getAllHousingLocation(): Promise<InterfaceHousingLocation[]> {
               13          try {
               14            const data = await fetch(this.url);
               15            if (!data.ok) {
@@ -445,7 +486,7 @@
               23          }
               24        }
               25
-              26        async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
+              26        async getHousingLocationById(id: number): Promise<InterfaceHousingLocation | undefined> {
               27          const url = `${this.url}/${id}`;
               28          console.log('URL de la API:', url);
               29          try {
@@ -454,7 +495,7 @@
               32              throw new Error(`Error HTTP: ${data.status}`);
               33            }
               34            const response = await data.json();
-              35            return response.datos.find((item: HousingLocation) => item.id === id);
+              35            return response.datos.find((item: InterfaceHousingLocation) => item.id === id);
               36          } catch (error) {
               37            console.error('Error al obtener datos:', error);
               38            return undefined;
@@ -468,28 +509,28 @@
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.11. Componente 'home' (.ts): frontend/src/app/components/home/home.component.ts ------------------------------------------------------------------|
+|-- 02.11. Componente 'home' (.ts): frontend/src/app/components/home/home.ts ----------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { CommonModule } from '@angular/common';
               02      import { Component, inject } from '@angular/core';
-              03      import { HousingLocation } from '../../interfaces/housing-location';
-              04      import { HousingLocationService } from '../../services/housing-location.service';
-              05      import { HousingLocationComponent } from '../housing-location/housing-location.component';
+              03      import { InterfaceHousingLocation } from '../../interfaces/interface-housing-location';
+              04      import { HousingLocationService } from '../../services/service-housing-location';
+              05      import { HousingLocation } from '../housing-location/housing-location';
               06
               07      @Component({
               08        selector: 'app-home',
-              09        imports: [CommonModule, HousingLocationComponent],
-              10        templateUrl: './home.component.html',
-              11        styleUrl: './home.component.css'
+              09        imports: [CommonModule, HousingLocation],
+              10        templateUrl: './home.html',
+              11        styleUrl: './home.css'
               12      })
-              13      export class HomeComponent {
-              14        housingLocationList: HousingLocation[] = [];
+              13      export class Home {
+              14        housingLocationList: InterfaceHousingLocation[] = [];
               15        housingService: HousingLocationService = inject(HousingLocationService);
-              16        filteredLocationList: HousingLocation[] = [];
+              16        filteredLocationList: InterfaceHousingLocation[] = [];
               17
               18        constructor(){
-              19          this.housingService.getAllHousingLocation().then((housingLocationList: HousingLocation[]) => {
+              19          this.housingService.getAllHousingLocation().then((housingLocationList: InterfaceHousingLocation[]) => {
               20            this.housingLocationList = housingLocationList;
               21            this.filteredLocationList = housingLocationList;
               22          })
@@ -508,62 +549,62 @@
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.12. Componente 'home' (.css): frontend/src/app/components/home/home.component.css ----------------------------------------------------------------|
+|-- 02.12. Componente 'home' (.css): frontend/src/app/components/home/home.css --------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 --- 02.12.01. Agregar los estilos del componente home al archivo 'home.component.css', desde el siguiente enlace:
 
-              https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/css/home.component.css
+              https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/css/home.css
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.13. Componente 'home' (.html): frontend/src/app/components/home/home.component.html --------------------------------------------------------------|
+|-- 02.13. Componente 'home' (.html): frontend/src/app/components/home/home.html ------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      <section>
-              02          <form>
-              03              <input type="text" placeholder="Filter by city" #filter/>
-              04              <button type="button" class="primary" (click)="filterResults(filter.value)" >Search</button>
-              05          </form>
-              06          <section class="results">
-              07              <app-housing-location
-              08                  *ngFor="let housingLocation of filteredLocationList"
-              09                  [housingLocation]="housingLocation">
-              10              </app-housing-location>
-              11          </section>
+              02        <form>
+              03            <input type="text" placeholder="Filter by city" #filter/>
+              04            <button type="button" class="primary" (click)="filterResults(filter.value)" >Search</button>
+              05        </form>
+              06        <section class="results">
+              07            <app-housing-location
+              08                *ngFor="let housingLocation of filteredLocationList"
+              09                [housingLocation]="housingLocation">
+              10            </app-housing-location>
+              11        </section>
               12      </section>
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.14. Componente 'housing-location' (.ts): frontend/src/app/components/housing-location/housing-location.component.ts ------------------------------|
+|-- 02.14. Componente 'housing-location' (.ts): frontend/src/app/components/housing-location/housing-location.ts ----------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { CommonModule } from '@angular/common';
               02      import { Component, Input } from '@angular/core';
               03      import { RouterModule } from '@angular/router';
-              04      import { HousingLocation } from '../../interfaces/housing-location';
+              04      import { InterfaceHousingLocation } from '../../interfaces/interface-housing-location';
               05
               06      @Component({
               07        selector: 'app-housing-location',
               08        imports: [RouterModule, CommonModule],
-              09        templateUrl: './housing-location.component.html',
-              10        styleUrl: './housing-location.component.css'
+              09        templateUrl: './housing-location.html',
+              10        styleUrl: './housing-location.css'
               11      })
-              12      export class HousingLocationComponent {
-              13        @Input() housingLocation!: HousingLocation;
+              12      export class HousingLocation {
+              13        @Input() housingLocation!: InterfaceHousingLocation;
               14      }
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.15. Componente 'housing-location' (.css): frontend/src/app/components/housing-location/housing-location.component.css ----------------------------|
+|-- 02.15. Componente 'housing-location' (.css): frontend/src/app/components/housing-location/housing-location.css --------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 --- 02.15.01. Agregar los estilos del componente housing-location al archivo 'housing-location.component.css', desde el siguiente enlace:
 
-              https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/css/housing-location.component.css
+              https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/css/housing-location.css
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.16. Componente 'housing-location' (.html): frontend/src/app/components/housing-location/housing-location.component.html --------------------------|
+|-- 02.16. Componente 'housing-location' (.html): frontend/src/app/components/housing-location/housing-location.html ------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      <section class="listing" *ngIf="housingLocation">
@@ -575,31 +616,31 @@
               07          />
               08          <h2 class="listing-heading">{{ housingLocation.name }}</h2>
               09          <p class="listing-location">{{ housingLocation.city }}, {{ housingLocation.state }}</p>
-              10          <a [routerLink]="['/locations', housingLocation.id]" routerLinkActive="router-link-active">Learn More</a>
+              10          <a [routerLink]="['/details', housingLocation.id]" routerLinkActive="router-link-active">Learn More</a>
               11      </section>
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.17. Componente 'details' (.ts): frontend/src/app/components/details/details.component.ts ---------------------------------------------------------|
+|-- 02.17. Componente 'details' (.ts): frontend/src/app/components/details/details.ts -------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      import { CommonModule } from '@angular/common';
               02      import { Component, inject } from '@angular/core';
               03      import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
               04      import { ActivatedRoute } from '@angular/router';
-              05      import { HousingLocation } from '../../interfaces/housing-location';
-              06      import { HousingLocationService } from '../../services/housing-location.service';
+              05      import { InterfaceHousingLocation } from '../../interfaces/interface-housing-location';
+              06      import { HousingLocationService } from '../../services/service-housing-location';
               07
               08      @Component({
               09        selector: 'app-details',
               10        imports: [CommonModule, ReactiveFormsModule],
-              11        templateUrl: './details.component.html',
-              12        styleUrl: './details.component.css'
+              11        templateUrl: './details.html',
+              12        styleUrl: './details.css'
               13      })
-              14      export class DetailsComponent {
+              14      export class Details {
               15        route: ActivatedRoute = inject(ActivatedRoute);
               16        housingService = inject(HousingLocationService);
-              17        housingLocation: HousingLocation | undefined;
+              17        housingLocation: InterfaceHousingLocation | undefined;
               18
               19        constructor(){
               20          const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
@@ -628,13 +669,13 @@
 |-- 02.18. Componente 'details' (.css): frontend/src/app/components/details/details.component.css -------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
---- 02.18.01. Agregar los estilos del componente details al archivo 'details.component.css', desde el siguiente enlace:
+--- 02.18.01. Agregar los estilos del componente details al archivo 'details.css', desde el siguiente enlace:
 
-              https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/css/details.component.css
+              https://github.com/ProfeAlbeiro/api_php_angular/blob/main/sources/css/details.css
 
 
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|-- 02.19. Componente 'details' (.html): frontend/src/app/components/details/details.component.html -----------------------------------------------------|
+|-- 02.19. Componente 'details' (.html): frontend/src/app/components/details/details.html -----------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
               01      <article>
